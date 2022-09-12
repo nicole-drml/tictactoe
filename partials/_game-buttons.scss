@@ -1,0 +1,26 @@
+
+#game-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 40px;
+    width: $board * 0.4;
+    gap: 10px;
+    margin-top: 10px;
+  
+    #previous-button,
+    #next-button {
+      flex-grow: 1;
+      padding: 5px;
+      width: 100px;
+      cursor: pointer;
+    }
+  
+    #new-game-button {
+      flex-grow: 1;
+      padding: 5px;
+      align-self: flex-end;
+      cursor: pointer;
+    }
+  }
+  

@@ -1,0 +1,13 @@
+
+#scores-container {
+    position: absolute;
+    top: 123px;
+    right: 350px;
+  
+    #scores-tally {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      margin-top: 8px;
+    }
+  }

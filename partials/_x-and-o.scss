@@ -1,0 +1,80 @@
+$x-o-size: 120px;
+$hover:  rgb(199, 178, 153);
+.cell.x,
+.cell.o {
+    cursor: not-allowed;
+}
+
+.x::before,
+.x::after, 
+.x-turn::before,
+.x-turn::after {
+    content: '';
+    position: absolute;
+    background-color: none;
+    width: 15px;
+    height: $x-o-size;
+    border-radius: 5px;
+}
+
+.x::before,
+.x::after {
+    background-color: black;
+}
+
+.x::before,
+.x-turn::before {
+    transform: rotate(-45deg);
+}
+
+.x::after,
+.x-turn::after {
+    transform: rotate(45deg);
+}
+
+.x-turn:hover {
+    cursor: pointer;
+}
+
+.x-turn:hover::before,
+.x-turn:hover::after {
+    background-color: $hover;
+}
+
+
+.o::before,
+.o::after,
+.o-turn::before,
+.o-turn::after  {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.o::before {
+    background-color: black;
+    width: $x-o-size * .95;
+    height: $x-o-size * .95;
+}
+
+.o::after,
+.o-turn::after  {
+    background-color: $board-color;
+    width: $x-o-size * .70;
+    height: $x-o-size * .70;
+}
+
+
+.o-turn::before{
+    background-color: none;
+    width: $x-o-size * .95;
+    height: $x-o-size * .95;
+}
+
+.o-turn:hover {
+    cursor: pointer;
+}
+
+.o-turn:hover::before {
+    background-color: $hover;
+}
