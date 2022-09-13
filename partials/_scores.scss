@@ -1,8 +1,13 @@
 
 #scores-container {
-    position: absolute;
-    top: 123px;
-    right: 350px;
+    // position: absolute;
+    // top: 123px;
+    // right: 350px;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    margin-right: 20%;
+    margin-top: -46%;
   
     #scores-tally {
       display: flex;

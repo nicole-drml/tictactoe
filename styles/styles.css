@@ -38,6 +38,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 #board .cell:first-child,
 #board .cell:nth-child(2),
@@ -57,32 +58,37 @@ body {
 }
 
 #game-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
   height: 40px;
   width: 16%;
   gap: 10px;
   margin-top: 10px;
+  grid-template-areas: "previous next" "new-game new-game";
+}
+#game-buttons #previous-button {
+  grid-area: previous;
+}
+#game-buttons #next-button {
+  grid-area: next;
 }
 #game-buttons #previous-button,
 #game-buttons #next-button {
-  flex-grow: 1;
   padding: 5px;
-  width: 100px;
+  width: 100%;
   cursor: pointer;
 }
 #game-buttons #new-game-button {
-  flex-grow: 1;
   padding: 5px;
-  align-self: flex-end;
   cursor: pointer;
+  grid-area: new-game;
 }
 
 #scores-container {
-  position: absolute;
-  top: 123px;
-  right: 350px;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  margin-right: 20%;
+  margin-top: -46%;
 }
 #scores-container #scores-tally {
   display: flex;
@@ -103,8 +109,8 @@ body {
   content: "";
   position: absolute;
   background-color: none;
-  width: 15px;
-  height: 120px;
+  width: 10%;
+  height: 80%;
   border-radius: 5px;
 }
 
@@ -143,21 +149,21 @@ body {
 
 .o::before {
   background-color: black;
-  width: 114px;
-  height: 114px;
+  width: 76%;
+  height: 76%;
 }
 
 .o::after,
 .o-turn::after {
   background-color: bisque;
-  width: 84px;
-  height: 84px;
+  width: 52%;
+  height: 52%;
 }
 
 .o-turn::before {
   background-color: none;
-  width: 114px;
-  height: 114px;
+  width: 76%;
+  height: 76%;
 }
 
 .o-turn:hover {

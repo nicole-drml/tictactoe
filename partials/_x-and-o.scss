@@ -1,4 +1,4 @@
-$x-o-size: 120px;
+$x-o-size: 80%;
 $hover:  rgb(199, 178, 153);
 .cell.x,
 .cell.o {
@@ -12,7 +12,7 @@ $hover:  rgb(199, 178, 153);
     content: '';
     position: absolute;
     background-color: none;
-    width: 15px;
+    width: 10%;
     height: $x-o-size;
     border-radius: 5px;
 }
@@ -60,8 +60,8 @@ $hover:  rgb(199, 178, 153);
 .o::after,
 .o-turn::after  {
     background-color: $board-color;
-    width: $x-o-size * .70;
-    height: $x-o-size * .70;
+    width: $x-o-size * .65;
+    height: $x-o-size * .65;
 }
 
 
