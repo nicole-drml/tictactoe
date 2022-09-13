@@ -7,20 +7,27 @@ const xClass = 'x'
 const oClass = 'o'
 let xTurn
 
-const board = [
-    ['X', 'O', 'X'],
-    ['0', 'X', '0'],
-    ['0', 'X', '0']
-]
 
-// cells.addEventListener("click", makeX)
-//  function makeX(){
-//     cells.classList.add("x");
-// } 
-for (const cell of cells) {
+cells.forEach((cell) => {
     cell.addEventListener("click", makeMove, {once: true})
-}
+}) 
 
+
+//(board[0][1]).push('hello')
+//board[0][1] = 'X'
+// board[0][0]
+// board[0][1]
+// let third = board[0][2]
+
+
+const board = [
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', '']
+];
+
+console.log(cells)
+console.log(board)
 // for (const cell of cells) {
 //     cell.addEventListener("mouseover", hoverMark)
 // }
@@ -38,6 +45,8 @@ function makeMove (e) {
     activePlayer.textContent = activeTurn
     placeMark(cell, currentTurn)
     swapTurns()
+    // // toArray()
+    // console.log(cell)
 }
 
 
@@ -51,12 +60,10 @@ function swapTurns() {
     xTurn = !xTurn
 }
 
-// console.log(cells[3])
-// newGameBtn.addEventListener("click", makeRed)
-// function makeRed() {
-//     newGameBtn.style.color= "red";
-// }
-
-// console.log(board[2][1])
-
-// console.log(board[0][1])
+let k = 0;
+for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++){
+        board[i][j]=cells[k];
+        k++;
+    }
+}
