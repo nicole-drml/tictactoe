@@ -1,80 +1,71 @@
 $x-o-size: 80%;
-$hover:  rgb(199, 178, 153);
+$hover: rgb(199, 178, 153);
+
 .cell.x,
 .cell.o {
-    cursor: not-allowed;
+  cursor: not-allowed;
 }
 
 .x::before,
-.x::after, 
-.x-turn::before,
-.x-turn::after {
-    content: '';
-    position: absolute;
-    background-color: none;
-    width: 10%;
-    height: $x-o-size;
-    border-radius: 5px;
+.x::after,
+#board.x-turn .cell:not(.x):not(.o):hover::before,
+#board.x-turn .cell:not(.x):not(.o):hover::after {
+  content: "";
+  position: absolute;
+  background-color: none;
+  width: 10%;
+  height: $x-o-size;
+  border-radius: 5px;
 }
 
 .x::before,
-.x::after {
-    background-color: black;
+.x::after,
+.o::before {
+  background-color: black;
 }
 
 .x::before,
-.x-turn::before {
-    transform: rotate(-45deg);
+#board.x-turn .cell:not(.x):not(.o):hover::before {
+  transform: rotate(-45deg);
 }
 
 .x::after,
-.x-turn::after {
-    transform: rotate(45deg);
+#board.x-turn .cell:not(.x):not(.o):hover::after {
+  transform: rotate(45deg);
 }
 
-.x-turn:hover {
-    cursor: pointer;
+#board.x-turn .cell:not(.x):not(.o):hover::before,
+#board.x-turn .cell:not(.x):not(.o):hover::after,
+#board.o-turn .cell:not(.x):not(.o):hover::before,
+#board.o-turn .cell:not(.x):not(.o):hover::after {
+  cursor: pointer;
+  background-color: $hover;
 }
-
-.x-turn:hover::before,
-.x-turn:hover::after {
-    background-color: $hover;
-}
-
 
 .o::before,
 .o::after,
-.o-turn::before,
-.o-turn::after  {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
+#board.o-turn .cell:not(.x):not(.o):hover::before,
+#board.o-turn .cell:not(.x):not(.o):hover::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
 }
 
-.o::before {
-    background-color: black;
-    width: $x-o-size * .95;
-    height: $x-o-size * .95;
+.o::before,
+#board.o-turn .cell:not(.x):not(.o):hover::before {
+  width: $x-o-size * 0.95;
+  height: $x-o-size * 0.95;
 }
 
 .o::after,
-.o-turn::after  {
-    background-color: $board-color;
-    width: $x-o-size * .65;
-    height: $x-o-size * .65;
+#board.o-turn .cell:not(.x):not(.o):hover::after {
+  background-color: $board-color;
+  width: $x-o-size * 0.65;
+  height: $x-o-size * 0.65;
 }
 
-
-.o-turn::before{
-    background-color: none;
-    width: $x-o-size * .95;
-    height: $x-o-size * .95;
-}
-
-.o-turn:hover {
-    cursor: pointer;
-}
-
-.o-turn:hover::before {
-    background-color: $hover;
+.o-turn::before {
+  background-color: none;
+  width: $x-o-size * 0.95;
+  height: $x-o-size * 0.95;
 }

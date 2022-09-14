@@ -19,41 +19,46 @@
     <div id="ask-player-container">
       <span id="ask-player-question">Who's playing first?</span>
       <button id="ask-player-x-button" data-x-button>Player X</button>
-      <button id="ask-player-o-button" data-y-button>Player O</button>
+      <button id="ask-player-o-button" data-o-button>Player O</button>
     </div>
-    <p id="whose-turn"> <span id="active-player" data-active-player></span> playing</p>
-    <div id="board">
-      <div class="cell x" data-cell></div>
-      <div class="cell o" data-cell></div>
+    <p id="whose-turn">
+      <span id="active-player" data-active-player></span> playing
+    </p>
+    <div id="board" class="" data-board>
       <div class="cell" data-cell></div>
-      <div class="cell o-turn" data-cell></div>
-      <div class="cell x-turn" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
       <div class="cell" data-cell></div>
       <div class="cell" data-cell></div>
       <div class="cell" data-cell></div>
       <div class="cell" data-cell></div>
     </div>
     <div id="game-buttons">
-        <button id="previous-button">Previous</button>
-        <button id="next-button">Next</button>
-        <button id="new-game-button" data-new-game>New Game</button>
+      <button id="previous-button">Previous</button>
+      <button id="next-button">Next</button>
+      <button id="new-game-button" data-new-game>New Game</button>
     </div>
     <div id="scores-container">
-        <span id="scores-span">SCORES:</span>
-        <div id="scores-tally">
-            <div id="player-x-tally">
-                <span id="player-x-tally-span">Player X:</span>
-                <span id="player-x-tally-count"></span>
-            </div>
-            <div id="player-o-tally">
-                <span id="player-o-tally-span">Player O:</span>
-                <span id="player-o-tally-count"></span>
-            </div>
-            <div id="tie-tally">
-                <span id="tie-tally-span">Tie:</span>
-                <span id="tie-tally-count"></span>
-            </div>
+      <span id="scores-span">SCORES:</span>
+      <div id="scores-tally">
+        <div id="player-x-tally">
+          <span id="player-x-tally-span">Player X:</span>
+          <span id="player-x-tally-count"></span>
         </div>
+        <div id="player-o-tally">
+          <span id="player-o-tally-span">Player O:</span>
+          <span id="player-o-tally-count"></span>
+        </div>
+        <div id="tie-tally">
+          <span id="tie-tally-span">Tie:</span>
+          <span id="tie-tally-count"></span>
+        </div>
+      </div>
     </div>
+    <!-- <div id="endgame-container" data-endgame-container> -->
+    <h2 id="endgame-message" data-endgame-message></h2>
+    <!-- </div> -->
   </body>
 </html>

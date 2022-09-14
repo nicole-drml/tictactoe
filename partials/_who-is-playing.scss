@@ -1,11 +1,15 @@
-
 #ask-player-x-button,
 #ask-player-o-button {
   cursor: pointer;
 }
 
+#ask-player-x-button:disabled,
+#ask-player-o-button:disabled {
+  cursor: not-allowed;
+}
+
 #active-player {
-    font-size: larger;
-    font-weight: 500;
-    text-decoration: underline;
+  font-size: larger;
+  font-weight: 500;
+  text-decoration: underline;
 }

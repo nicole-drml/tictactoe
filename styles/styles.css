@@ -17,6 +17,11 @@ body {
   cursor: pointer;
 }
 
+#ask-player-x-button:disabled,
+#ask-player-o-button:disabled {
+  cursor: not-allowed;
+}
+
 #active-player {
   font-size: larger;
   font-weight: 500;
@@ -104,8 +109,8 @@ body {
 
 .x::before,
 .x::after,
-.x-turn::before,
-.x-turn::after {
+#board.x-turn .cell:not(.x):not(.o):hover::before,
+#board.x-turn .cell:not(.x):not(.o):hover::after {
   content: "";
   position: absolute;
   background-color: none;
@@ -115,46 +120,46 @@ body {
 }
 
 .x::before,
-.x::after {
+.x::after,
+.o::before {
   background-color: black;
 }
 
 .x::before,
-.x-turn::before {
+#board.x-turn .cell:not(.x):not(.o):hover::before {
   transform: rotate(-45deg);
 }
 
 .x::after,
-.x-turn::after {
+#board.x-turn .cell:not(.x):not(.o):hover::after {
   transform: rotate(45deg);
 }
 
-.x-turn:hover {
+#board.x-turn .cell:not(.x):not(.o):hover::before,
+#board.x-turn .cell:not(.x):not(.o):hover::after,
+#board.o-turn .cell:not(.x):not(.o):hover::before,
+#board.o-turn .cell:not(.x):not(.o):hover::after {
   cursor: pointer;
-}
-
-.x-turn:hover::before,
-.x-turn:hover::after {
   background-color: rgb(199, 178, 153);
 }
 
 .o::before,
 .o::after,
-.o-turn::before,
-.o-turn::after {
+#board.o-turn .cell:not(.x):not(.o):hover::before,
+#board.o-turn .cell:not(.x):not(.o):hover::after {
   content: "";
   position: absolute;
   border-radius: 50%;
 }
 
-.o::before {
-  background-color: black;
+.o::before,
+#board.o-turn .cell:not(.x):not(.o):hover::before {
   width: 76%;
   height: 76%;
 }
 
 .o::after,
-.o-turn::after {
+#board.o-turn .cell:not(.x):not(.o):hover::after {
   background-color: bisque;
   width: 52%;
   height: 52%;
@@ -164,12 +169,4 @@ body {
   background-color: none;
   width: 76%;
   height: 76%;
-}
-
-.o-turn:hover {
-  cursor: pointer;
-}
-
-.o-turn:hover::before {
-  background-color: rgb(199, 178, 153);
 }/*# sourceMappingURL=styles.css.map */
