@@ -1,18 +1,19 @@
+#scores-tally {
+  display: flex;
+  gap: 40px;
+  text-align: center;
+  background-color: $board-color;
+  width: $board;
+  padding: 5px;
+  position: absolute;
+  bottom: 50px;
+  justify-content: space-around;
+  display: none;
 
-#scores-container {
-    // position: absolute;
-    // top: 123px;
-    // right: 350px;
-    display: flex;
-    flex-direction: column;
-    align-self: flex-end;
-    margin-right: 20%;
-    margin-top: -46%;
-  
-    #scores-tally {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      margin-top: 8px;
-    }
+  #player-x-tally,
+  #player-o-tally,
+  #draw-tally {
+    width: 100%;
+    // text-align: center;
   }
+}

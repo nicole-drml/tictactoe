@@ -13,6 +13,10 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;900&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/74309bf0dc.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <h1 id="title">Tic Tac Toe</h1>
@@ -35,30 +39,40 @@
       <div class="cell" data-cell></div>
       <div class="cell" data-cell></div>
     </div>
-    <div id="game-buttons">
-      <button id="previous-button">Previous</button>
-      <button id="next-button">Next</button>
-      <button id="new-game-button" data-new-game>New Game</button>
+    <div id="history-and-next-game-container">
+      <div id="history-buttons">
+        <i id="previous-button" class="fa-solid fa-circle-chevron-left"></i>
+        <i id="next-button" class="fa-solid fa-circle-chevron-right"></i>
+        <!-- <span id="replay-span">replay</span> -->
+      </div>
+      <button id="restart">RESTART</button>
+      <button id="next-game">Next Game</button>
     </div>
-    <div id="scores-container">
-      <span id="scores-span">SCORES:</span>
-      <div id="scores-tally">
-        <div id="player-x-tally">
-          <span id="player-x-tally-span">Player X:</span>
-          <span id="player-x-tally-count"></span>
-        </div>
-        <div id="player-o-tally">
-          <span id="player-o-tally-span">Player O:</span>
-          <span id="player-o-tally-count"></span>
-        </div>
-        <div id="tie-tally">
-          <span id="tie-tally-span">Tie:</span>
-          <span id="tie-tally-count"></span>
-        </div>
+    <div id="scores-tally">
+      <div id="player-x-tally">
+        <span id="player-x-tally-span">Player X:</span>
+        <span id="player-x-tally-count">0</span>
+      </div>
+      <div id="draw-tally">
+        <span id="draw-tally-span">Draw:</span>
+        <span id="draw-tally-count">0</span>
+      </div>
+      <div id="player-o-tally">
+        <span id="player-o-tally-span">Player O:</span>
+        <span id="player-o-tally-count">0</span>
       </div>
     </div>
-    <!-- <div id="endgame-container" data-endgame-container> -->
-    <h2 id="endgame-message" data-endgame-message></h2>
-    <!-- </div> -->
+    <div id="endgame-container" data-endgame-container>
+      <h2 id="endgame-message" data-endgame-message>winner</h2>
+      <div id="endgame-button-container">
+        <button id="replay-moves" data-replay-moves>
+          <i id="replay-moves-icon" class="fa-solid fa-arrow-rotate-left"></i>
+        </button>
+        <button id="endgame-next-game" data-endgame-next-game>
+          <i id="endgame-next-game-icon" class="fa-solid fa-caret-right"></i>
+        </button>
+      </div>
+      <!-- <button id="restart" data-restart>RESTART</button> -->
+    </div>
   </body>
 </html>

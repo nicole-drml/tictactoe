@@ -10,40 +10,27 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 30px;
-}
-
-#ask-player-x-button,
-#ask-player-o-button {
-  cursor: pointer;
-}
-
-#ask-player-x-button:disabled,
-#ask-player-o-button:disabled {
-  cursor: not-allowed;
-}
-
-#active-player {
-  font-size: larger;
-  font-weight: 500;
-  text-decoration: underline;
+  background-color: #160E37;
+  color: white;
 }
 
 #board {
-  width: 40%;
-  height: 40%;
+  width: 80%;
+  height: 80%;
   aspect-ratio: 1;
-  background-color: bisque;
+  background-color: #FACBA0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
 #board .cell {
   width: 100%;
   height: 100%;
-  border: 3px solid blueviolet;
+  border: 3px solid #8a2be2;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  border-radius: 25px;
 }
 #board .cell:first-child,
 #board .cell:nth-child(2),
@@ -62,49 +49,171 @@ body {
   border-bottom: none;
 }
 
-#game-buttons {
-  display: grid;
-  height: 40px;
-  width: 16%;
-  gap: 10px;
-  margin-top: 10px;
-  grid-template-areas: "previous next" "new-game new-game";
+#ask-player-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
-#game-buttons #previous-button {
-  grid-area: previous;
-}
-#game-buttons #next-button {
-  grid-area: next;
-}
-#game-buttons #previous-button,
-#game-buttons #next-button {
-  padding: 5px;
-  width: 100%;
+#ask-player-container #ask-player-x-button,
+#ask-player-container #ask-player-o-button {
   cursor: pointer;
-}
-#game-buttons #new-game-button {
   padding: 5px;
-  cursor: pointer;
-  grid-area: new-game;
+  border: hidden;
+  border-radius: 10px;
+}
+#ask-player-container #ask-player-x-button:hover,
+#ask-player-container #ask-player-o-button:hover {
+  box-shadow: 3px -3px 0px 0 white;
+}
+#ask-player-container #ask-player-x-button {
+  background-color: #FAD551;
+}
+#ask-player-container #ask-player-o-button {
+  background-color: #4ACFA3;
+}
+#ask-player-container #ask-player-x-button:disabled,
+#ask-player-container #ask-player-o-button:disabled {
+  cursor: not-allowed;
+}
+#ask-player-container #active-player {
+  font-size: larger;
+  font-weight: 500;
+  text-decoration: underline;
 }
 
-#scores-container {
+#endgame-container {
+  z-index: 999;
   display: flex;
-  flex-direction: column;
-  align-self: flex-end;
-  margin-right: 20%;
-  margin-top: -46%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgb(250, 231, 122);
+  visibility: hidden;
 }
-#scores-container #scores-tally {
+#endgame-container #endgame-message {
+  text-align: center;
+  width: 100%;
+}
+#endgame-container #endgame-button-container {
   display: flex;
-  flex-direction: column;
-  gap: 1px;
-  margin-top: 8px;
+  width: 70%;
+  gap: 5px;
+}
+#endgame-container #endgame-button-container #endgame-next-game,
+#endgame-container #endgame-button-container #replay-moves {
+  cursor: pointer;
+  padding: 5px;
+}
+#endgame-container #endgame-button-container #endgame-next-game {
+  width: 100%;
+  background-color: #53f5bb;
+}
+#endgame-container #endgame-button-container #endgame-next-game #endgame-next-game-icon {
+  transform: scale(1.5);
+}
+#endgame-container #endgame-button-container #endgame-next-game:hover > #endgame-next-game-icon {
+  transform: scale(2);
+}
+#endgame-container #endgame-button-container #replay-moves {
+  width: 50%;
+  background-color: #beb9f3;
+}
+#endgame-container #endgame-button-container #replay-moves:hover > #replay-moves-icon {
+  transform: scale(1.3);
+}
+
+#history-and-next-game-container {
+  display: grid;
+  margin-top: 10px;
+  width: 80%;
+  grid-template-columns: repeat(3, 1fr);
+}
+#history-and-next-game-container #history-buttons {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-areas: "previous next";
+  width: 60%;
+  gap: 15px;
+}
+#history-and-next-game-container #history-buttons #previous-button,
+#history-and-next-game-container #history-buttons #next-button {
+  color: #160E37;
+  background-color: #beb9f3;
+  transform: scale(1.2);
+  text-align: center;
+  padding: 2px;
+  border-radius: 5px;
+}
+#history-and-next-game-container #history-buttons #previous-button:hover,
+#history-and-next-game-container #history-buttons #next-button:hover {
+  cursor: pointer;
+}
+#history-and-next-game-container #previous-button:hover,
+#history-and-next-game-container #next-button:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 0px 0 white;
+}
+#history-and-next-game-container #restart {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+  width: 100px;
+  cursor: pointer;
+  height: 100%;
+  background-color: #fbcccc;
+  border-radius: 15px;
+  border: hidden #fbcccc;
+}
+#history-and-next-game-container #restart:hover {
+  font-weight: 800;
+  box-shadow: 1px 1px 0px 0 white;
+}
+#history-and-next-game-container #next-game {
+  margin-left: auto;
+  width: 100px;
+  height: 100%;
+  background-color: #6ad6b2;
+  border-radius: 15px;
+  border: hidden #6ad6b2;
+}
+#history-and-next-game-container #next-game:hover {
+  cursor: pointer;
+  font-weight: 800;
+  box-shadow: 1px 1px 0px 0 white;
+}
+
+#scores-tally {
+  display: flex;
+  gap: 40px;
+  text-align: center;
+  background-color: #FACBA0;
+  width: 80%;
+  padding: 5px;
+  position: absolute;
+  bottom: 50px;
+  justify-content: space-around;
+  display: none;
+}
+#scores-tally #player-x-tally,
+#scores-tally #player-o-tally,
+#scores-tally #draw-tally {
+  width: 100%;
 }
 
 .cell.x,
 .cell.o {
   cursor: not-allowed;
+}
+
+.cell.x {
+  background-color: #FAD551;
+}
+
+.cell.o {
+  background-color: #4ACFA3;
 }
 
 .x::before,
@@ -114,7 +223,7 @@ body {
   content: "";
   position: absolute;
   background-color: none;
-  width: 10%;
+  width: 15%;
   height: 80%;
   border-radius: 5px;
 }
@@ -122,7 +231,7 @@ body {
 .x::before,
 .x::after,
 .o::before {
-  background-color: black;
+  background-color: #160E37;
 }
 
 .x::before,
@@ -154,19 +263,24 @@ body {
 
 .o::before,
 #board.o-turn .cell:not(.x):not(.o):hover::before {
-  width: 76%;
-  height: 76%;
+  width: 72%;
+  height: 72%;
 }
 
-.o::after,
 #board.o-turn .cell:not(.x):not(.o):hover::after {
-  background-color: bisque;
-  width: 52%;
-  height: 52%;
+  background-color: #FACBA0;
+  width: 44%;
+  height: 44%;
 }
 
 .o-turn::before {
   background-color: none;
-  width: 76%;
-  height: 76%;
+  width: 72%;
+  height: 72%;
+}
+
+.o::after {
+  background-color: #4ACFA3;
+  width: 44%;
+  height: 44%;
 }/*# sourceMappingURL=styles.css.map */

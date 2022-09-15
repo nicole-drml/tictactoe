@@ -1,9 +1,13 @@
-$x-o-size: 80%;
-$hover: rgb(199, 178, 153);
-
 .cell.x,
 .cell.o {
   cursor: not-allowed;
+}
+
+.cell.x {
+    background-color: $x-color;
+}
+.cell.o {
+    background-color: $o-color;
 }
 
 .x::before,
@@ -13,7 +17,7 @@ $hover: rgb(199, 178, 153);
   content: "";
   position: absolute;
   background-color: none;
-  width: 10%;
+  width: 15%;
   height: $x-o-size;
   border-radius: 5px;
 }
@@ -21,7 +25,7 @@ $hover: rgb(199, 178, 153);
 .x::before,
 .x::after,
 .o::before {
-  background-color: black;
+  background-color: $background-color;
 }
 
 .x::before,
@@ -53,19 +57,25 @@ $hover: rgb(199, 178, 153);
 
 .o::before,
 #board.o-turn .cell:not(.x):not(.o):hover::before {
-  width: $x-o-size * 0.95;
-  height: $x-o-size * 0.95;
+  width: $x-o-size * 0.90;
+  height: $x-o-size * 0.90;
 }
 
-.o::after,
+
 #board.o-turn .cell:not(.x):not(.o):hover::after {
-  background-color: $board-color;
-  width: $x-o-size * 0.65;
-  height: $x-o-size * 0.65;
+background-color: $board-color;
+  width: $x-o-size * 0.55;
+  height: $x-o-size * 0.55;
 }
 
 .o-turn::before {
   background-color: none;
-  width: $x-o-size * 0.95;
-  height: $x-o-size * 0.95;
+  width: $x-o-size * 0.90;
+  height: $x-o-size * 0.90;
+}
+
+.o::after {
+    background-color: $o-color;
+    width: $x-o-size * 0.55;
+    height: $x-o-size * 0.55;
 }
