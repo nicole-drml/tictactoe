@@ -14,13 +14,18 @@ body {
   color: white;
 }
 
+#title {
+  margin-bottom: 15px;
+}
+
 #board {
   width: 80%;
   height: 80%;
   aspect-ratio: 1;
-  background-color: #FACBA0;
+  background-color: #F88DB0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  margin-top: 5px;
 }
 #board .cell {
   width: 100%;
@@ -50,9 +55,17 @@ body {
 }
 
 #ask-player-container {
+  position: fixed;
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 5px;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
 }
 #ask-player-container #ask-player-x-button,
 #ask-player-container #ask-player-o-button {
@@ -66,7 +79,7 @@ body {
   box-shadow: 3px -3px 0px 0 white;
 }
 #ask-player-container #ask-player-x-button {
-  background-color: #FAD551;
+  background-color: #fab951;
 }
 #ask-player-container #ask-player-o-button {
   background-color: #4ACFA3;
@@ -75,14 +88,34 @@ body {
 #ask-player-container #ask-player-o-button:disabled {
   cursor: not-allowed;
 }
-#ask-player-container #active-player {
+
+#board-status-div {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  visibility: hidden;
+}
+#board-status-div #player-turn-span {
   font-size: larger;
   font-weight: 500;
   text-decoration: underline;
+  color: white;
+}
+
+#endgame-container-background {
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 999;
 }
 
 #endgame-container {
-  z-index: 999;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -90,11 +123,11 @@ body {
   padding: 20px;
   border-radius: 5px;
   background-color: rgb(250, 231, 122);
-  visibility: hidden;
 }
 #endgame-container #endgame-message {
   text-align: center;
   width: 100%;
+  color: #160E37;
 }
 #endgame-container #endgame-button-container {
   display: flex;
@@ -137,6 +170,7 @@ body {
   grid-template-areas: "previous next";
   width: 60%;
   gap: 15px;
+  visibility: hidden;
 }
 #history-and-next-game-container #history-buttons #previous-button,
 #history-and-next-game-container #history-buttons #next-button {
@@ -150,10 +184,6 @@ body {
 #history-and-next-game-container #history-buttons #previous-button:hover,
 #history-and-next-game-container #history-buttons #next-button:hover {
   cursor: pointer;
-}
-#history-and-next-game-container #previous-button:hover,
-#history-and-next-game-container #next-button:hover {
-  cursor: pointer;
   box-shadow: 1px 1px 0px 0 white;
 }
 #history-and-next-game-container #restart {
@@ -163,25 +193,26 @@ body {
   width: 100px;
   cursor: pointer;
   height: 100%;
-  background-color: #fbcccc;
-  border-radius: 15px;
+  background-color: #f4568b;
+  border-radius: 10px;
   border: hidden #fbcccc;
+  color: white;
 }
 #history-and-next-game-container #restart:hover {
-  font-weight: 800;
   box-shadow: 1px 1px 0px 0 white;
 }
 #history-and-next-game-container #next-game {
   margin-left: auto;
   width: 100px;
   height: 100%;
-  background-color: #6ad6b2;
-  border-radius: 15px;
+  background-color: #3dc698;
+  border-radius: 10px;
   border: hidden #6ad6b2;
+  color: #160E37;
+  visibility: hidden;
 }
 #history-and-next-game-container #next-game:hover {
   cursor: pointer;
-  font-weight: 800;
   box-shadow: 1px 1px 0px 0 white;
 }
 
@@ -189,7 +220,7 @@ body {
   display: flex;
   gap: 40px;
   text-align: center;
-  background-color: #FACBA0;
+  background-color: #F88DB0;
   width: 80%;
   padding: 5px;
   position: absolute;
@@ -209,7 +240,7 @@ body {
 }
 
 .cell.x {
-  background-color: #FAD551;
+  background-color: #fab951;
 }
 
 .cell.o {
@@ -268,7 +299,7 @@ body {
 }
 
 #board.o-turn .cell:not(.x):not(.o):hover::after {
-  background-color: #FACBA0;
+  background-color: #F88DB0;
   width: 44%;
   height: 44%;
 }

@@ -20,15 +20,16 @@
   </head>
   <body>
     <h1 id="title">Tic Tac Toe</h1>
-    <div id="ask-player-container">
+    <div id="board-status-div" data-board-status-div>
+    <span id="player-turn-span" data-player-turn-span></span>
+    <p id="board-status" data-board-status> playing</p>
+  </div>
+    <div id="ask-player-container" data-ask-player-container>
       <span id="ask-player-question">Who's playing first?</span>
       <button id="ask-player-x-button" data-x-button>Player X</button>
       <button id="ask-player-o-button" data-o-button>Player O</button>
     </div>
-    <p id="whose-turn">
-      <span id="active-player" data-active-player></span> playing
-    </p>
-    <div id="board" class="" data-board>
+    <div id="board" class="" disabled="disabled" data-board>
       <div class="cell" data-cell></div>
       <div class="cell" data-cell></div>
       <div class="cell" data-cell></div>
@@ -40,13 +41,13 @@
       <div class="cell" data-cell></div>
     </div>
     <div id="history-and-next-game-container">
-      <div id="history-buttons">
+      <div id="history-buttons" data-history-buttons>
         <i id="previous-button" class="fa-solid fa-circle-chevron-left"></i>
         <i id="next-button" class="fa-solid fa-circle-chevron-right"></i>
         <!-- <span id="replay-span">replay</span> -->
       </div>
       <button id="restart">RESTART</button>
-      <button id="next-game">Next Game</button>
+      <button id="next-game" data-next-game>Next Game</button>
     </div>
     <div id="scores-tally">
       <div id="player-x-tally">
@@ -62,17 +63,19 @@
         <span id="player-o-tally-count">0</span>
       </div>
     </div>
-    <div id="endgame-container" data-endgame-container>
-      <h2 id="endgame-message" data-endgame-message>winner</h2>
-      <div id="endgame-button-container">
-        <button id="replay-moves" data-replay-moves>
-          <i id="replay-moves-icon" class="fa-solid fa-arrow-rotate-left"></i>
-        </button>
-        <button id="endgame-next-game" data-endgame-next-game>
-          <i id="endgame-next-game-icon" class="fa-solid fa-caret-right"></i>
-        </button>
+    <div id="endgame-container-background" data-endgame-container-background>
+      <div id="endgame-container" data-endgame-container>
+        <h2 id="endgame-message" data-endgame-message>winner</h2>
+        <div id="endgame-button-container">
+          <button id="replay-moves" data-replay-moves>
+            <i id="replay-moves-icon" class="fa-solid fa-arrow-rotate-left"></i>
+          </button>
+          <button id="endgame-next-game" data-endgame-next-game>
+            <i id="endgame-next-game-icon" class="fa-solid fa-caret-right"></i>
+          </button>
+        </div>
+        <!-- <button id="restart" data-restart>RESTART</button> -->
       </div>
-      <!-- <button id="restart" data-restart>RESTART</button> -->
     </div>
   </body>
 </html>

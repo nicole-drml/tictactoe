@@ -5,13 +5,12 @@
 }
 
 $board: 80%;
-$board-color: #FACBA0;
+$board-color:#F88DB0;
 $background-color: #160E37;
 $x-o-size: 80%;
 $hover: rgb(199, 178, 153);
 $o-color: #4ACFA3;
-$x-color: #FAD551;
-// rgb(250, 230, 160);
+$x-color: #fab951;
 
 
 body {
@@ -24,6 +23,9 @@ body {
   color: white;
 }
 
+#title {
+  margin-bottom: 15px;
+}
 
 
 @import "../partials/board";
