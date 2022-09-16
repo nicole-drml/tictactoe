@@ -41,7 +41,7 @@ function displayScore() {
   oTotal.innerHTML = oCounter;
   drawTotal.innerHTML = drawCounter;
 }
-displayScore()
+displayScore();
 
 const xClass = "x";
 const oClass = "o";
@@ -54,6 +54,13 @@ const board = [
   ["", "", ""],
   ["", "", ""],
 ];
+
+const boardHistory = [];
+// const getMoves = boardHistory.map ((move) => {
+//   return move;
+// })
+// const backward = getMoves.pop
+// const forward = getMoves.push
 
 const winningCombinations = [
   [0, 1, 2],
@@ -109,18 +116,29 @@ function makeMove(e) {
     }
     swapTurns(activeTurn);
     console.log(board);
+    boardHistory.push(JSON.parse(JSON.stringify(board)));
+    // boardHistory.push(board)
+    console.log("asd", boardHistory);
   }
 }
 
 function placeMark(cell, currentTurn) {
   cell.classList.add(currentTurn);
+  cell.textContent = currentTurn;
   boardDisplay.classList.remove(`${currentTurn}-turn`);
+  let k = 0;
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      board[i][j] = cells[k].textContent;
+      k++;
+    }
+  }
 }
 
 function checkWin(currentTurn) {
   return winningCombinations.some((combination) => {
     return combination.every((index) => {
-      return cells[index].classList.contains(currentTurn);
+      return cells[index].textContent === currentTurn;
     });
   });
 }
@@ -145,12 +163,12 @@ function endGame(draw) {
   endgameBackground.style.display = "flex";
   boardStatus.style.visibility = "hidden";
   whoseTurnSpan.style.visibility = "hidden";
-  displayScore()
+  displayScore();
 }
 
 function isDraw() {
   return [...cells].every((cell) => {
-    return cell.classList.contains(xClass) || cell.classList.contains(oClass);
+    return cell.textContent === xClass || cell.textContent === oClass;
   });
 }
 
@@ -194,8 +212,8 @@ function restartGame() {
   newGamePrep();
   boardStatus.textContent = " ";
   askPlayerDiv.style.display = "flex";
-  resetCounter() 
-  displayScore()
+  resetCounter();
+  displayScore();
 }
 
 function newGamePrep() {
@@ -204,18 +222,11 @@ function newGamePrep() {
     cell.classList.remove(xClass);
     cell.addEventListener("click", makeMove, { once: true });
     cell.classList.remove("block-cells");
+    cell.textContent = cell.textcontent.remove;
   });
   historyBtns.style.visibility = "hidden";
   nextGameBtn.style.visibility = "hidden";
 }
 
-console.log(cells);
-console.log([...cells]);
-
-let k = 0;
-for (let i = 0; i < board.length; i++) {
-  for (let j = 0; j < board[i].length; j++) {
-    board[i][j] = cells[k];
-    k++;
-  }
-}
+// console.log(cells);
+// console.log([...cells]);
