@@ -18,6 +18,49 @@ body {
   margin-bottom: 15px;
 }
 
+#ask-player-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+#ask-player-container #ask-player-buttons {
+  display: flex;
+  gap: 15px;
+}
+#ask-player-container #ask-player-buttons #ask-player-x-button,
+#ask-player-container #ask-player-buttons #ask-player-o-button {
+  cursor: pointer;
+  padding: 10px;
+  border: hidden;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 800;
+}
+#ask-player-container #ask-player-buttons #ask-player-x-button:hover,
+#ask-player-container #ask-player-buttons #ask-player-o-button:hover {
+  color: #160E37;
+}
+#ask-player-container #ask-player-buttons #ask-player-x-button {
+  background-color: #fab951;
+}
+#ask-player-container #ask-player-buttons #ask-player-o-button {
+  background-color: #4ACFA3;
+}
+#ask-player-container #ask-player-buttons #ask-player-x-button:disabled,
+#ask-player-container #ask-player-buttons #ask-player-o-button:disabled {
+  cursor: not-allowed;
+}
+
 #board {
   width: 80%;
   height: 80%;
@@ -54,39 +97,58 @@ body {
   border-bottom: none;
 }
 
-#ask-player-container {
+#endgame-container-background {
   position: fixed;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
-  gap: 5px;
   top: 0%;
   left: 0%;
   right: 0%;
   bottom: 0%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
   z-index: 999;
 }
-#ask-player-container #ask-player-x-button,
-#ask-player-container #ask-player-o-button {
+#endgame-container-background #endgame-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgb(250, 231, 122);
+}
+#endgame-container-background #endgame-container #endgame-message {
+  text-align: center;
+  width: 100%;
+  color: #160E37;
+}
+#endgame-container-background #endgame-container #endgame-button-container {
+  display: flex;
+  width: 70%;
+  gap: 5px;
+}
+#endgame-container-background #endgame-container #endgame-button-container #endgame-next-game,
+#endgame-container-background #endgame-container #endgame-button-container #replay-moves {
   cursor: pointer;
   padding: 5px;
-  border: hidden;
-  border-radius: 10px;
 }
-#ask-player-container #ask-player-x-button:hover,
-#ask-player-container #ask-player-o-button:hover {
-  box-shadow: 3px -3px 0px 0 white;
+#endgame-container-background #endgame-container #endgame-button-container #endgame-next-game {
+  width: 100%;
+  background-color: #73f553;
 }
-#ask-player-container #ask-player-x-button {
-  background-color: #fab951;
+#endgame-container-background #endgame-container #endgame-button-container #endgame-next-game #endgame-next-game-icon {
+  transform: scale(1.5);
 }
-#ask-player-container #ask-player-o-button {
-  background-color: #4ACFA3;
+#endgame-container-background #endgame-container #endgame-button-container #endgame-next-game:hover > #endgame-next-game-icon {
+  transform: scale(2);
 }
-#ask-player-container #ask-player-x-button:disabled,
-#ask-player-container #ask-player-o-button:disabled {
-  cursor: not-allowed;
+#endgame-container-background #endgame-container #endgame-button-container #replay-moves {
+  width: 50%;
+  background-color: #beb9f3;
+}
+#endgame-container-background #endgame-container #endgame-button-container #replay-moves:hover > #replay-moves-icon {
+  transform: scale(1.3);
 }
 
 #board-status-div {
@@ -102,120 +164,6 @@ body {
   color: white;
 }
 
-#endgame-container-background {
-  position: fixed;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  top: 0%;
-  left: 0%;
-  right: 0%;
-  bottom: 0%;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 999;
-}
-
-#endgame-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 20px;
-  border-radius: 5px;
-  background-color: rgb(250, 231, 122);
-}
-#endgame-container #endgame-message {
-  text-align: center;
-  width: 100%;
-  color: #160E37;
-}
-#endgame-container #endgame-button-container {
-  display: flex;
-  width: 70%;
-  gap: 5px;
-}
-#endgame-container #endgame-button-container #endgame-next-game,
-#endgame-container #endgame-button-container #replay-moves {
-  cursor: pointer;
-  padding: 5px;
-}
-#endgame-container #endgame-button-container #endgame-next-game {
-  width: 100%;
-  background-color: #53f5bb;
-}
-#endgame-container #endgame-button-container #endgame-next-game #endgame-next-game-icon {
-  transform: scale(1.5);
-}
-#endgame-container #endgame-button-container #endgame-next-game:hover > #endgame-next-game-icon {
-  transform: scale(2);
-}
-#endgame-container #endgame-button-container #replay-moves {
-  width: 50%;
-  background-color: #beb9f3;
-}
-#endgame-container #endgame-button-container #replay-moves:hover > #replay-moves-icon {
-  transform: scale(1.3);
-}
-
-#history-and-next-game-container {
-  display: grid;
-  margin-top: 10px;
-  width: 80%;
-  grid-template-columns: repeat(3, 1fr);
-}
-#history-and-next-game-container #history-buttons {
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  grid-template-areas: "previous next";
-  width: 60%;
-  gap: 15px;
-  visibility: hidden;
-}
-#history-and-next-game-container #history-buttons #previous-button,
-#history-and-next-game-container #history-buttons #next-button {
-  color: #160E37;
-  background-color: #beb9f3;
-  transform: scale(1.2);
-  text-align: center;
-  padding: 2px;
-  border-radius: 5px;
-}
-#history-and-next-game-container #history-buttons #previous-button:hover,
-#history-and-next-game-container #history-buttons #next-button:hover {
-  cursor: pointer;
-  box-shadow: 1px 1px 0px 0 white;
-}
-#history-and-next-game-container #restart {
-  margin-left: auto;
-  margin-right: auto;
-  padding: 5px;
-  width: 100px;
-  cursor: pointer;
-  height: 100%;
-  background-color: #f4568b;
-  border-radius: 10px;
-  border: hidden #fbcccc;
-  color: white;
-}
-#history-and-next-game-container #restart:hover {
-  box-shadow: 1px 1px 0px 0 white;
-}
-#history-and-next-game-container #next-game {
-  margin-left: auto;
-  width: 100px;
-  height: 100%;
-  background-color: #3dc698;
-  border-radius: 10px;
-  border: hidden #6ad6b2;
-  color: #160E37;
-  visibility: hidden;
-}
-#history-and-next-game-container #next-game:hover {
-  cursor: pointer;
-  box-shadow: 1px 1px 0px 0 white;
-}
-
 #scores-tally {
   display: flex;
   gap: 40px;
@@ -224,9 +172,8 @@ body {
   width: 80%;
   padding: 5px;
   position: absolute;
-  bottom: 50px;
+  bottom: 0;
   justify-content: space-around;
-  display: none;
 }
 #scores-tally #player-x-tally,
 #scores-tally #player-o-tally,
@@ -314,4 +261,67 @@ body {
   background-color: #4ACFA3;
   width: 44%;
   height: 44%;
+}
+
+.block-cells {
+  cursor: not-allowed;
+}
+
+#history-and-next-game-container {
+  display: grid;
+  margin-top: 10px;
+  width: 80%;
+  grid-template-columns: repeat(3, 1fr);
+}
+#history-and-next-game-container #history-buttons {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-areas: "previous next";
+  width: 60%;
+  gap: 15px;
+  visibility: hidden;
+}
+#history-and-next-game-container #history-buttons #previous-button,
+#history-and-next-game-container #history-buttons #next-button {
+  color: #160E37;
+  background-color: #beb9f3;
+  transform: scale(1.2);
+  text-align: center;
+  padding: 2px;
+  border-radius: 5px;
+}
+#history-and-next-game-container #history-buttons #previous-button:hover,
+#history-and-next-game-container #history-buttons #next-button:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 0px 0 white;
+}
+#history-and-next-game-container #restart {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+  width: 100px;
+  cursor: pointer;
+  height: 100%;
+  background-color: #f4568b;
+  border-radius: 5px;
+  border: hidden #fbcccc;
+  color: white;
+}
+#history-and-next-game-container #restart:hover {
+  box-shadow: 1px 1px 0px 0 white;
+}
+#history-and-next-game-container #next-game {
+  margin-left: auto;
+  width: 100px;
+  height: 100%;
+  background-color: #73f553;
+  border-radius: 5px;
+  border: hidden #6ad6b2;
+  color: #160E37;
+  visibility: hidden;
+}
+#history-and-next-game-container #next-game:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 0px 0 white;
 }/*# sourceMappingURL=styles.css.map */

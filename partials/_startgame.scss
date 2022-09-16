@@ -1,0 +1,50 @@
+#ask-player-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+    background-color: rgb(0, 0, 0, 0.7);
+    z-index: 999;
+
+    #ask-player-buttons{
+      display: flex;
+      gap: 15px;
+
+      #ask-player-x-button,
+      #ask-player-o-button {
+        cursor: pointer;
+        padding: 10px;
+        border: hidden;
+        border-radius: 10px;
+        color: white;
+        font-size: 1.2em;
+        font-weight: 800;
+      }
+    
+      #ask-player-x-button:hover,
+      #ask-player-o-button:hover {
+        color: $background-color;
+
+      }
+    
+      #ask-player-x-button {
+        background-color: $x-color;
+      }
+    
+      #ask-player-o-button {
+        background-color: $o-color;
+      }
+    
+      #ask-player-x-button:disabled,
+      #ask-player-o-button:disabled {
+        cursor: not-allowed;
+      }
+    }
+  }
+  

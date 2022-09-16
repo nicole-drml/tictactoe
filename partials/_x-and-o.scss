@@ -79,3 +79,7 @@ background-color: $board-color;
     width: $x-o-size * 0.55;
     height: $x-o-size * 0.55;
 }
+
+.block-cells {
+  cursor: not-allowed;
+}

@@ -1,3 +1,17 @@
+#board-status-div {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  visibility: hidden;
+
+  #player-turn-span {
+    font-size: larger;
+    font-weight: 500;
+    text-decoration: underline;
+    color: white;
+  }
+}
+
 #scores-tally {
   display: flex;
   gap: 40px;
@@ -6,9 +20,9 @@
   width: $board;
   padding: 5px;
   position: absolute;
-  bottom: 50px;
+  bottom: 0;
   justify-content: space-around;
-  display: none;
+  //display: none;
 
   #player-x-tally,
   #player-o-tally,

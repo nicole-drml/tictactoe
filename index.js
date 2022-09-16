@@ -15,13 +15,12 @@ const endgameNextGame = document.querySelector("[data-endgame-next-game]");
 
 const whoseTurnSpan = document.querySelector("[data-player-turn-span]");
 const boardStatus = document.querySelector("[data-board-status]");
-const boardStatusContainer = document.querySelector("[data-board-status-div]");
-
 
 const endgameMsg = document.querySelector("[data-endgame-message]");
 
 const historyBtns = document.querySelector("[data-history-buttons]");
 const nextGameBtn = document.querySelector("[data-next-game]");
+const restartBtn = document.querySelector("[data-restart-button]");
 
 const xClass = "x";
 const oClass = "o";
@@ -51,8 +50,7 @@ xStartBtn.addEventListener("click", () => {
   whoseTurnSpan.textContent = xClass;
   boardDisplay.classList.add("x-turn");
   oPlayerTurn = false;
-  askPlayerDiv.style.display = "none";
-  boardStatusContainer.style.visibility = "visible"
+  setupBoard()
 });
 
 oStartBtn.addEventListener("click", () => {
@@ -60,9 +58,16 @@ oStartBtn.addEventListener("click", () => {
   whoseTurnSpan.textContent = oClass;
   boardDisplay.classList.add("o-turn");
   oPlayerTurn = true;
-  askPlayerDiv.style.display = "none";
-  boardStatusContainer.style.visibility = "visible"
+  setupBoard()
 });
+
+function setupBoard() {
+  askPlayerDiv.style.display = "none";
+  boardStatus.style.visibility = "visible";
+  whoseTurnSpan.style.visibility = "visible";
+  boardStatus.textContent = " playing";
+  endgameBackground.style.display = "none";
+}
 
 cells.forEach((cell) => {
   cell.addEventListener("click", makeMove, { once: true });
@@ -70,17 +75,20 @@ cells.forEach((cell) => {
 
 function makeMove(e) {
   const cell = e.target;
-  activeTurn = oPlayerTurn ? xClass : oClass;
-  currentTurn = oPlayerTurn ? oClass : xClass;
-  whoseTurnSpan.textContent = activeTurn;
-  placeMark(cell, currentTurn);
-  if (checkWin(currentTurn)) {
-    endGame(false);
-  } else if (isDraw()) {
-    endGame(true);
+  if (cell.classList.contains("block-cells")) {
+  } else {
+    activeTurn = oPlayerTurn ? xClass : oClass;
+    currentTurn = oPlayerTurn ? oClass : xClass;
+    whoseTurnSpan.textContent = activeTurn;
+    placeMark(cell, currentTurn);
+    if (checkWin(currentTurn)) {
+      endGame(false);
+    } else if (isDraw()) {
+      endGame(true);
+    }
+    swapTurns(activeTurn);
+    console.log(board);
   }
-  swapTurns(activeTurn);
-  console.log(board);
 }
 
 function placeMark(cell, currentTurn) {
@@ -104,13 +112,12 @@ function swapTurns(activeTurn) {
 function endGame(draw) {
   if (draw) {
     endgameMsg.textContent = `It's a draw!`;
-    endgameBackground.style.display = "flex";
-    boardStatusContainer.style.visibility = "hidden"
   } else {
     endgameMsg.textContent = `${currentTurn} wins!`;
-    endgameBackground.style.display = "flex";
-    boardStatusContainer.style.visibility = "hidden"
   }
+  endgameBackground.style.display = "flex";
+  boardStatus.style.visibility = "hidden";
+  whoseTurnSpan.style.visibility = "hidden";
 }
 
 function isDraw() {
@@ -127,54 +134,53 @@ function anotherGame() {
     cell.classList.remove(xClass);
     cell.addEventListener("click", makeMove, { once: false });
   });
-  boardStatusContainer.style.visibility = "visible";
-  endgameBackground.style.display = "none";
-  whoseTurnSpan.textContent = activeTurn;
+  setupBoard()
 }
+
+
 
 endgameReplayBtn.addEventListener("click", replayMoves);
 
 function replayMoves() {
-endgameBackground.style.display = "none";
-boardStatusContainer.style.visibility = "visible";
-boardStatus.textContent = "Replaying moves"
+  boardStatus.style.visibility = "visible";
+  endgameBackground.style.display = "none";
+  boardStatus.textContent = "Replaying moves";
   historyBtns.style.visibility = "visible";
   nextGameBtn.style.visibility = "visible";
-  whoseTurnSpan.style.visibility = "hidden"
+  whoseTurnSpan.style.visibility = "hidden";
+  cells.forEach((cell) => {
+    cell.classList.add("block-cells");
+  });
+  boardDisplay.classList.remove("o-turn");
+  boardDisplay.classList.remove("x-turn");
 }
-
 
 nextGameBtn.addEventListener("click", nextGame);
 
 function nextGame() {
+  newGamePrep();
+  setupBoard();
+}
+
+restartBtn.addEventListener("click", restartGame);
+
+function restartGame() {
+  newGamePrep();
+  boardStatus.textContent = " ";
+  askPlayerDiv.style.display = "flex";
+}
+
+function newGamePrep() {
   cells.forEach((cell) => {
     cell.classList.remove(oClass);
     cell.classList.remove(xClass);
     cell.addEventListener("click", makeMove, { once: false });
+    cell.classList.remove("block-cells");
   });
-  boardStatus.textContent = " playing";
   historyBtns.style.visibility = "hidden";
   nextGameBtn.style.visibility = "hidden";
-  whoseTurnSpan.style.visibility = "visible";
-// const afterReplaySpan = document.querySelector("[data-player-turn-span]");
-// afterReplaySpan.textContent = activeTurn;
-
-
-// endgameBackground.style.display = "flex";
-// boardStatus.style.visibility = "hidden"
-// whoseTurnSpan.style.visibility = "hidden"
-// endgameBackground.style.display = "none";
-// boardStatus.style.visibility = "visible"
-// boardStatus.textContent = "Replaying moves"
 }
 
-
-// function restartBoard() {
-//   askPlayerDiv.style.display = "none";
-//   historyBtns.style.visibility = "hidden";
-//   nextGameBtn.style.visibility = "hidden";
-//   boardStatus.textContent = " playing"
-// }
 console.log(cells);
 console.log([...cells]);
 

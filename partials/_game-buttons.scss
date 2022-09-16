@@ -1,59 +1,3 @@
-$button-height: 100%;
-
-#ask-player-container {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  top: 0%;
-  left: 0%;
-  right: 0%;
-  bottom: 0%;
-  background-color: rgb(0, 0, 0, 0.7);
-  z-index: 999;
-
-  #ask-player-x-button,
-  #ask-player-o-button {
-    cursor: pointer;
-    padding: 5px;
-    border: hidden;
-    border-radius: 10px;
-  }
-
-  #ask-player-x-button:hover,
-  #ask-player-o-button:hover {
-    box-shadow: 3px -3px 0px 0 white;
-  }
-
-  #ask-player-x-button {
-    background-color: $x-color;
-  }
-
-  #ask-player-o-button {
-    background-color: $o-color;
-  }
-
-  #ask-player-x-button:disabled,
-  #ask-player-o-button:disabled {
-    cursor: not-allowed;
-  }
-}
-
-#board-status-div {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  visibility: hidden;
-  #player-turn-span {
-    font-size: larger;
-    font-weight: 500;
-    text-decoration: underline;
-    color: white;
-  }
-}
-
-
 #endgame-container-background {
   position: fixed;
   // display: flex;
@@ -66,7 +10,7 @@ $button-height: 100%;
   bottom: 0%;
   background-color: rgb(0, 0, 0, 0.3);
   z-index: 999;
-}
+
 
 #endgame-container {
   display: flex;
@@ -97,7 +41,7 @@ $button-height: 100%;
 
     #endgame-next-game {
       width: 100%;
-      background-color: #53f5bb;
+      background-color: $next-game;
 
       #endgame-next-game-icon {
         transform: scale(1.5);
@@ -118,68 +62,4 @@ $button-height: 100%;
     }
   }
 }
-
-#history-and-next-game-container {
-  display: grid;
-  margin-top: 10px;
-  width: $board;
-  grid-template-columns: repeat(3, 1fr);
-
-  #history-buttons {
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    grid-template-areas: "previous next";
-    width: 60%;
-    gap: 15px;
-    visibility: hidden;
-
-    #previous-button,
-    #next-button {
-      // outline: black solid 2px;
-      color: $background-color;
-      background-color: #beb9f3;
-      transform: scale(1.2);
-      text-align: center;
-      padding: 2px;
-      border-radius: 5px;
-    }
-
-    #previous-button:hover,
-    #next-button:hover {
-      cursor: pointer;
-      box-shadow: 1px 1px 0px 0 white;
-    }
-  }
-
-  #restart {
-    margin-left: auto;
-    margin-right: auto;
-    padding: 5px;
-    width: 100px;
-    cursor: pointer;
-    height: $button-height;
-    background-color: #f4568b;
-    border-radius: 10px;
-    border: hidden #fbcccc;
-    color: white;
-  }
-  #restart:hover {
-    box-shadow: 1px 1px 0px 0 white;
-  }
-
-  #next-game {
-    margin-left: auto;
-    width: 100px;
-    height: $button-height;
-    background-color: #3dc698;
-    border-radius: 10px;
-    border: hidden #6ad6b2;
-    color: $background-color;
-    visibility: hidden;
-  }
-  #next-game:hover {
-    cursor: pointer;
-    box-shadow: 1px 1px 0px 0 white;
-  }
 }

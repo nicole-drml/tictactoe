@@ -11,8 +11,9 @@ $x-o-size: 80%;
 $hover: rgb(199, 178, 153);
 $o-color: #4ACFA3;
 $x-color: #fab951;
-
-
+$button-height: 100%;
+$next-game: #73f553;
+// #53f59f;
 body {
   font-family: "Poppins", sans-serif;
   display: flex;
@@ -27,8 +28,9 @@ body {
   margin-bottom: 15px;
 }
 
-
+@import "../partials/startgame";
 @import "../partials/board";
 @import "../partials/game-buttons";
 @import "../partials/scores";
 @import "../partials/x-and-o";
+@import "../partials/replay-div";
