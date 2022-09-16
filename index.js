@@ -22,6 +22,27 @@ const historyBtns = document.querySelector("[data-history-buttons]");
 const nextGameBtn = document.querySelector("[data-next-game]");
 const restartBtn = document.querySelector("[data-restart-button]");
 
+let xTotal = document.querySelector("[data-player-x-tally]");
+let oTotal = document.querySelector("[data-player-o-tally]");
+let drawTotal = document.querySelector("[data-draw-tally]");
+
+let xCounter = 0;
+let oCounter = 0;
+let drawCounter = 0;
+
+function resetCounter() {
+  xCounter = 0;
+  oCounter = 0;
+  drawCounter = 0;
+}
+
+function displayScore() {
+  xTotal.innerHTML = xCounter;
+  oTotal.innerHTML = oCounter;
+  drawTotal.innerHTML = drawCounter;
+}
+displayScore()
+
 const xClass = "x";
 const oClass = "o";
 let oPlayerTurn = "";
@@ -50,7 +71,7 @@ xStartBtn.addEventListener("click", () => {
   whoseTurnSpan.textContent = xClass;
   boardDisplay.classList.add("x-turn");
   oPlayerTurn = false;
-  setupBoard()
+  setupBoard();
 });
 
 oStartBtn.addEventListener("click", () => {
@@ -58,7 +79,7 @@ oStartBtn.addEventListener("click", () => {
   whoseTurnSpan.textContent = oClass;
   boardDisplay.classList.add("o-turn");
   oPlayerTurn = true;
-  setupBoard()
+  setupBoard();
 });
 
 function setupBoard() {
@@ -112,12 +133,19 @@ function swapTurns(activeTurn) {
 function endGame(draw) {
   if (draw) {
     endgameMsg.textContent = `It's a draw!`;
+    drawCounter++;
   } else {
     endgameMsg.textContent = `${currentTurn} wins!`;
+    if (currentTurn === xClass) {
+      xCounter++;
+    } else {
+      oCounter++;
+    }
   }
   endgameBackground.style.display = "flex";
   boardStatus.style.visibility = "hidden";
   whoseTurnSpan.style.visibility = "hidden";
+  displayScore()
 }
 
 function isDraw() {
@@ -134,10 +162,8 @@ function anotherGame() {
     cell.classList.remove(xClass);
     cell.addEventListener("click", makeMove, { once: false });
   });
-  setupBoard()
+  setupBoard();
 }
-
-
 
 endgameReplayBtn.addEventListener("click", replayMoves);
 
@@ -168,6 +194,8 @@ function restartGame() {
   newGamePrep();
   boardStatus.textContent = " ";
   askPlayerDiv.style.display = "flex";
+  resetCounter() 
+  displayScore()
 }
 
 function newGamePrep() {

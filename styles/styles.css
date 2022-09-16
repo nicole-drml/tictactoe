@@ -69,6 +69,8 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 5px;
+  border-radius: 25px;
+  padding: 15px;
 }
 #board .cell {
   width: 100%;
@@ -135,7 +137,7 @@ body {
 }
 #endgame-container-background #endgame-container #endgame-button-container #endgame-next-game {
   width: 100%;
-  background-color: #73f553;
+  background-color: #9af583;
 }
 #endgame-container-background #endgame-container #endgame-button-container #endgame-next-game #endgame-next-game-icon {
   transform: scale(1.5);
@@ -174,6 +176,7 @@ body {
   position: absolute;
   bottom: 0;
   justify-content: space-around;
+  border-radius: 5px;
 }
 #scores-tally #player-x-tally,
 #scores-tally #player-o-tally,
@@ -315,7 +318,7 @@ body {
   margin-left: auto;
   width: 100px;
   height: 100%;
-  background-color: #73f553;
+  background-color: #9af583;
   border-radius: 5px;
   border: hidden #6ad6b2;
   color: #160E37;
