@@ -3,6 +3,7 @@
   align-items: baseline;
   gap: 8px;
   visibility: hidden;
+  justify-content: center;
 
   #player-turn-span {
     font-size: larger;
@@ -23,7 +24,6 @@
   bottom: 0;
   justify-content: space-around;
   border-radius: 5px;
-  //display: none;
 
   #player-x-tally,
   #player-o-tally,

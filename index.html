@@ -20,10 +20,6 @@
   </head>
   <body>
     <h1 id="title">Tic Tac Toe</h1>
-    <div id="board-status-div">
-      <span id="player-turn-span" data-player-turn-span></span>
-      <p id="board-status" data-board-status>playing</p>
-    </div>
     <div id="ask-player-container" data-ask-player-container>
       <h1 id="ask-player-question">Who's playing first?</h1>
       <div id="ask-player-buttons">
@@ -31,25 +27,32 @@
         <button id="ask-player-o-button" data-o-button>Player O</button>
       </div>
     </div>
-    <div id="board" data-board>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-    </div>
-    <div id="history-and-next-game-container">
-      <div id="history-buttons" data-history-buttons>
-        <i id="previous-button" class="fa-solid fa-circle-chevron-left"></i>
-        <i id="next-button" class="fa-solid fa-circle-chevron-right"></i>
+    <div div="board-with-outer-elements">
+      <div id="board-status-div">
+        <span id="player-turn-span" data-player-turn-span></span>
+        <p id="board-status" data-board-status>playing</p>
       </div>
-      <button id="restart" data-restart-button>RESTART</button>
-      <button id="next-game" data-next-game>Next Game</button>
+      <div id="board" data-board>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+      </div>
+      <div id="history-and-next-game-container">
+        <div id="history-buttons" data-history-buttons>
+          <i id="previous-button" class="fa-solid fa-circle-chevron-left"></i>
+          <i id="next-button" class="fa-solid fa-circle-chevron-right"></i>
+        </div>
+        <button id="restart" data-restart-button>RESTART</button>
+        <button id="next-game" data-next-game>Next Game</button>
+      </div>
     </div>
+
     <div id="scores-tally">
       <div id="player-x-tally">
         <span id="player-x-tally-span">Player X:</span>

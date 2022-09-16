@@ -1,66 +1,64 @@
-
 #history-and-next-game-container {
+  display: grid;
+  margin-top: 10px;
+  width: $board;
+  grid-template-columns: repeat(3, 1fr);
+
+  #history-buttons {
     display: grid;
-    margin-top: 10px;
-    width: $board;
-    grid-template-columns: repeat(3, 1fr);
-  
-    #history-buttons {
-      display: grid;
-      align-items: center;
-      justify-content: center;
-      grid-template-areas: "previous next";
-      width: 60%;
-      gap: 15px;
-      visibility: hidden;
-  
-      #previous-button,
-      #next-button {
-        // outline: black solid 2px;
-        color: $background-color;
-        background-color: #beb9f3;
-        transform: scale(1.2);
-        text-align: center;
-        padding: 2px;
-        border-radius: 5px;
-      }
-  
-      #previous-button:hover,
-      #next-button:hover {
-        cursor: pointer;
-        box-shadow: 1px 1px 0px 0 white;
-      }
-    }
-  
-    #restart {
-      margin-left: auto;
-      margin-right: auto;
-      padding: 5px;
-      width: 100px;
-      cursor: pointer;
-      height: $button-height;
-      background-color: #f4568b;
-      border-radius: 5px;
-      border: hidden #fbcccc;
-      color: white;
-    }
-    #restart:hover {
-      box-shadow: 1px 1px 0px 0 white;
-    }
-  
-    #next-game {
-      margin-left: auto;
-      width: 100px;
-      height: $button-height;
-      background-color: $next-game;
-      border-radius: 5px;
-      border: hidden #6ad6b2;
+    align-items: center;
+    justify-content: center;
+    grid-template-areas: "previous next";
+    width: 60%;
+    gap: 15px;
+    visibility: hidden;
+
+    #previous-button,
+    #next-button {
+      // outline: black solid 2px;
       color: $background-color;
-      visibility: hidden;
+      background-color: #beb9f3;
+      transform: scale(1.2);
+      text-align: center;
+      padding: 2px;
+      border-radius: 5px;
     }
-    #next-game:hover {
+
+    #previous-button:hover,
+    #next-button:hover {
       cursor: pointer;
       box-shadow: 1px 1px 0px 0 white;
     }
   }
-  
+
+  #restart {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    width: 100px;
+    cursor: pointer;
+    height: $button-height;
+    background-color: #f4568b;
+    border-radius: 5px;
+    border: hidden #fbcccc;
+    color: white;
+  }
+  #restart:hover {
+    box-shadow: 1px 1px 0px 0 white;
+  }
+
+  #next-game {
+    margin-left: auto;
+    width: 100px;
+    height: $button-height;
+    background-color: $next-game;
+    border-radius: 5px;
+    border: hidden #6ad6b2;
+    color: $background-color;
+    visibility: hidden;
+  }
+  #next-game:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 0px 0 white;
+  }
+}

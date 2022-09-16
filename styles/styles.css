@@ -12,12 +12,33 @@ body {
   margin-top: 30px;
   background-color: #160E37;
   color: white;
+  overflow: hidden;
 }
 
 #title {
   margin-bottom: 15px;
 }
 
+@media (max-width: 799px) {
+  #board,
+#history-and-next-game-container,
+#scores-tally {
+    width: 80%;
+    max-width: 460px;
+  }
+}
+@media (min-width: 800px) {
+  #title {
+    font-size: 5em;
+    margin-bottom: 15px;
+  }
+  #board,
+#history-and-next-game-container,
+#scores-tally {
+    width: 80%;
+    max-width: 500px;
+  }
+}
 #ask-player-container {
   position: fixed;
   display: flex;
@@ -61,16 +82,26 @@ body {
   cursor: not-allowed;
 }
 
+#board-with-outer-elements {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
 #board {
-  width: 80%;
-  height: 80%;
-  aspect-ratio: 1;
   background-color: #F88DB0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin-top: 5px;
   border-radius: 25px;
   padding: 15px;
+  aspect-ratio: 1;
+  width: 500px;
+  max-height: 500px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 #board .cell {
   width: 100%;
@@ -158,6 +189,7 @@ body {
   align-items: baseline;
   gap: 8px;
   visibility: hidden;
+  justify-content: center;
 }
 #board-status-div #player-turn-span {
   font-size: larger;
@@ -171,7 +203,7 @@ body {
   gap: 40px;
   text-align: center;
   background-color: #F88DB0;
-  width: 80%;
+  width: 500px;
   padding: 5px;
   position: absolute;
   bottom: 0;
@@ -273,7 +305,7 @@ body {
 #history-and-next-game-container {
   display: grid;
   margin-top: 10px;
-  width: 80%;
+  width: 500px;
   grid-template-columns: repeat(3, 1fr);
 }
 #history-and-next-game-container #history-buttons {

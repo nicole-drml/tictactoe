@@ -1,0 +1,22 @@
+@media (max-width: 799px) {
+    #board,
+    #history-and-next-game-container,
+    #scores-tally {
+        width: 80%;
+        max-width: $board-mobile-width
+      }
+}
+
+@media (min-width: 800px) {
+  #title {
+    font-size: 5em;
+    margin-bottom: 15px;
+  }
+
+  #board,
+  #history-and-next-game-container,
+  #scores-tally {
+    width: 80%;
+    max-width: 500px;
+  }
+}

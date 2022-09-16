@@ -160,7 +160,7 @@ function anotherGame() {
   cells.forEach((cell) => {
     cell.classList.remove(oClass);
     cell.classList.remove(xClass);
-    cell.addEventListener("click", makeMove, { once: false });
+    cell.addEventListener("click", makeMove, { once: true });
   });
   setupBoard();
 }
@@ -202,7 +202,7 @@ function newGamePrep() {
   cells.forEach((cell) => {
     cell.classList.remove(oClass);
     cell.classList.remove(xClass);
-    cell.addEventListener("click", makeMove, { once: false });
+    cell.addEventListener("click", makeMove, { once: true });
     cell.classList.remove("block-cells");
   });
   historyBtns.style.visibility = "hidden";
