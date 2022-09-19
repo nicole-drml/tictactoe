@@ -34,14 +34,7 @@ const playerX = "x";
 const playerO = "o";
 let playerOTurn = "";
 let currentTurn = "";
-let cell =
-  // const getMoves = boardHistory.map ((move) => {
-  //   return move;
-  // })
-  // const backwardBtn = getMoves.pop
-  // const forwardBtn = getMoves.push
 
-  endgameNextGameBtn;
 let emptyBoard = [
   ["", "", ""],
   ["", "", ""],
@@ -62,7 +55,6 @@ let boardHistory = [
   ],
 ];
 
-let currentBoard = [];
 
 const winningCombinations = [
   [0, 1, 2],
@@ -77,11 +69,17 @@ const winningCombinations = [
 
 backwardBtn.addEventListener("click", backward);
 
-let b = 1;
+let b = 0;
+let f = 0;
+
+// x = b - f;
 function backward() {
   board = boardHistory[boardHistory.length - b];
   let availablePrevious = boardHistory.length - b;
   console.log("avail" + availablePrevious);
+
+  console.log("b: " + b);
+  console.log("f: " + f);
   if (availablePrevious > 0) {
     cells.forEach((cell) => {
       cell.classList.remove(playerO);
@@ -100,22 +98,29 @@ function backward() {
       }
     }
     b++;
+    f--;
   } else {
     backwardBtn.classList.add("blocked");
     backwardBtn.style.opacity = ".5";
     backwardBtn.disabled = true;
   }
+  forwardBtn.classList.remove("blocked");
+  forwardBtn.style.opacity = "1";
+  forwardBtn.disabled = false;
 }
-
 
 forwardBtn.addEventListener("click", forward);
 
-let c = 1;
 function forward() {
-  board = boardHistory[boardHistory.length - b];
-  let availableForward = boardHistory.length - (boardHistory.length - c);
+  f = 1;
+  f++;
+  board = boardHistory[boardHistory.length - b + f];
+  let availableForward = boardHistory.length - b + f;
   console.log("avail" + availableForward);
-  if (availableForward > 0) {
+
+  console.log("b: " + b);
+  console.log("f: " + f);
+  if (b > f) {
     cells.forEach((cell) => {
       cell.classList.remove(playerO);
       cell.classList.remove(playerX);
@@ -134,12 +139,14 @@ function forward() {
     }
     b--;
   } else {
-    backwardBtn.classList.add("blocked");
-    backwardBtn.style.opacity = ".5";
-    backwardBtn.disabled = true;
+    forwardBtn.classList.add("blocked");
+    forwardBtn.style.opacity = ".5";
+    forwardBtn.disabled = true;
   }
+  backwardBtn.classList.remove("blocked");
+  backwardBtn.style.opacity = "1";
+  backwardBtn.disabled = false;
 }
-
 
 xStartBtn.addEventListener("click", () => {
   currentTurn = "x";
@@ -260,8 +267,6 @@ function replayMoves() {
     cell.classList.add("blocked");
   });
   replayDisplay();
-  currentBoard = boardHistory.splice(boardHistory.length - 1, 1);
-  console.log("new board " + currentBoard);
 }
 
 function replayDisplay() {
@@ -273,7 +278,7 @@ function replayDisplay() {
   boardDisplay.classList.remove("o-turn");
   boardDisplay.classList.remove("x-turn");
   boardStatus.textContent = "Replaying moves";
-  resetPrevious()
+  resetPrevious();
 }
 
 nextGameBtn.addEventListener("click", nextGame);
@@ -333,7 +338,6 @@ function displayScore() {
   console.log("display");
 }
 displayScore();
-
 
 function resetPrevious() {
   b = 1;
