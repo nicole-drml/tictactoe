@@ -1,24 +1,24 @@
-const cells = document.querySelectorAll("[data-cell]");
 const boardDisplay = document.querySelector("[data-board]");
-
-const askPlayerDiv = document.querySelector("[data-ask-player-container]");
-
-const endgameBackground = document.querySelector(
-  "[data-endgame-container-background]"
-);
-
-const xStartBtn = document.querySelector("[data-x-button]");
-const oStartBtn = document.querySelector("[data-o-button]");
-
-const endgameReplayBtn = document.querySelector("[data-replay-moves]");
-const endgameNextGame = document.querySelector("[data-endgame-next-game]");
+const cells = document.querySelectorAll("[data-cell]");
 
 const whoseTurnSpan = document.querySelector("[data-player-turn-span]");
 const boardStatus = document.querySelector("[data-board-status]");
 
+const askPlayerDiv = document.querySelector("[data-ask-player-container]");
+const xStartBtn = document.querySelector("[data-x-button]");
+const oStartBtn = document.querySelector("[data-o-button]");
+
+const endgameBackground = document.querySelector(
+  "[data-endgame-container-background]"
+);
 const endgameMsg = document.querySelector("[data-endgame-message]");
+const endgameReplayBtn = document.querySelector("[data-replay-moves]");
+const endgameNextGameBtn = document.querySelector("[data-endgame-next-game]");
 
 const historyBtns = document.querySelector("[data-history-buttons]");
+const backwardBtn = document.querySelector("[data-previous-button]");
+const forwardBtn = document.querySelector("[data-next-button]");
+
 const nextGameBtn = document.querySelector("[data-next-game]");
 const restartBtn = document.querySelector("[data-restart-button]");
 
@@ -30,37 +30,39 @@ let xCounter = 0;
 let oCounter = 0;
 let drawCounter = 0;
 
-function resetCounter() {
-  xCounter = 0;
-  oCounter = 0;
-  drawCounter = 0;
-}
-
-function displayScore() {
-  xTotal.innerHTML = xCounter;
-  oTotal.innerHTML = oCounter;
-  drawTotal.innerHTML = drawCounter;
-}
-displayScore();
-
-const xClass = "x";
-const oClass = "o";
-let oPlayerTurn = "";
+const playerX = "x";
+const playerO = "o";
+let playerOTurn = "";
 let currentTurn = "";
-let activeTurn = "";
+let cell =
+  // const getMoves = boardHistory.map ((move) => {
+  //   return move;
+  // })
+  // const backwardBtn = getMoves.pop
+  // const forwardBtn = getMoves.push
 
-const board = [
+  endgameNextGameBtn;
+let emptyBoard = [
   ["", "", ""],
   ["", "", ""],
   ["", "", ""],
 ];
 
-const boardHistory = [];
-// const getMoves = boardHistory.map ((move) => {
-//   return move;
-// })
-// const backward = getMoves.pop
-// const forward = getMoves.push
+let board = [
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""],
+];
+
+let boardHistory = [
+  [
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""],
+  ],
+];
+
+let currentBoard = [];
 
 const winningCombinations = [
   [0, 1, 2],
@@ -73,29 +75,89 @@ const winningCombinations = [
   [2, 4, 6],
 ];
 
+backwardBtn.addEventListener("click", backward);
+
+let b = 1;
+function backward() {
+  board = boardHistory[boardHistory.length - b];
+  let availablePrevious = boardHistory.length - b;
+  console.log("avail" + availablePrevious);
+  if (availablePrevious > 0) {
+    cells.forEach((cell) => {
+      cell.classList.remove(playerO);
+      cell.classList.remove(playerX);
+    });
+    let r = 0;
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[i].length; j++) {
+        cells[r].textContent = board[i][j];
+        if (cells[r].textContent.includes(playerX)) {
+          cells[r].classList.add(playerX);
+        } else if (cells[r].textContent.includes(playerO)) {
+          cells[r].classList.add(playerO);
+        }
+        r++;
+      }
+    }
+    b++;
+  } else {
+    backwardBtn.classList.add("blocked");
+    backwardBtn.style.opacity = ".5";
+    backwardBtn.disabled = true;
+  }
+}
+
+
+forwardBtn.addEventListener("click", forward);
+
+let c = 1;
+function forward() {
+  board = boardHistory[boardHistory.length - b];
+  let availableForward = boardHistory.length - (boardHistory.length - c);
+  console.log("avail" + availableForward);
+  if (availableForward > 0) {
+    cells.forEach((cell) => {
+      cell.classList.remove(playerO);
+      cell.classList.remove(playerX);
+    });
+    let r = 0;
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[i].length; j++) {
+        cells[r].textContent = board[i][j];
+        if (cells[r].textContent.includes(playerX)) {
+          cells[r].classList.add(playerX);
+        } else if (cells[r].textContent.includes(playerO)) {
+          cells[r].classList.add(playerO);
+        }
+        r++;
+      }
+    }
+    b--;
+  } else {
+    backwardBtn.classList.add("blocked");
+    backwardBtn.style.opacity = ".5";
+    backwardBtn.disabled = true;
+  }
+}
+
+
 xStartBtn.addEventListener("click", () => {
-  boardDisplay.classList.remove("o-turn");
-  whoseTurnSpan.textContent = xClass;
+  currentTurn = "x";
+  playerOTurn = false;
   boardDisplay.classList.add("x-turn");
-  oPlayerTurn = false;
+  whoseTurnSpan.textContent = playerX;
+  askPlayerDiv.style.display = "none";
   setupBoard();
 });
 
 oStartBtn.addEventListener("click", () => {
-  boardDisplay.classList.remove("x-turn");
-  whoseTurnSpan.textContent = oClass;
+  currentTurn = "o";
+  playerOTurn = true;
   boardDisplay.classList.add("o-turn");
-  oPlayerTurn = true;
+  whoseTurnSpan.textContent = playerO;
+  askPlayerDiv.style.display = "none";
   setupBoard();
 });
-
-function setupBoard() {
-  askPlayerDiv.style.display = "none";
-  boardStatus.style.visibility = "visible";
-  whoseTurnSpan.style.visibility = "visible";
-  boardStatus.textContent = " playing";
-  endgameBackground.style.display = "none";
-}
 
 cells.forEach((cell) => {
   cell.addEventListener("click", makeMove, { once: true });
@@ -103,22 +165,24 @@ cells.forEach((cell) => {
 
 function makeMove(e) {
   const cell = e.target;
-  if (cell.classList.contains("block-cells")) {
+  if (cell.classList.contains("blocked")) {
+    cells.forEach((cell) => {
+      cell.addEventListener("click", makeMove, { none: true });
+    });
   } else {
-    activeTurn = oPlayerTurn ? xClass : oClass;
-    currentTurn = oPlayerTurn ? oClass : xClass;
-    whoseTurnSpan.textContent = activeTurn;
+    currentTurn = playerOTurn ? playerO : playerX;
     placeMark(cell, currentTurn);
     if (checkWin(currentTurn)) {
       endGame(false);
     } else if (isDraw()) {
       endGame(true);
     }
-    swapTurns(activeTurn);
-    console.log(board);
+    swapTurns(currentTurn);
     boardHistory.push(JSON.parse(JSON.stringify(board)));
-    // boardHistory.push(board)
-    console.log("asd", boardHistory);
+    console.log(board);
+    console.log("board history", boardHistory);
+
+    console.log("length history", boardHistory.length);
   }
 }
 
@@ -143,9 +207,11 @@ function checkWin(currentTurn) {
   });
 }
 
-function swapTurns(activeTurn) {
-  oPlayerTurn = !oPlayerTurn;
-  boardDisplay.classList.add(`${activeTurn}-turn`);
+function swapTurns(currentTurn) {
+  playerOTurn = !playerOTurn;
+  currentTurn = playerOTurn ? playerO : playerX;
+  boardDisplay.classList.add(`${currentTurn}-turn`);
+  whoseTurnSpan.textContent = currentTurn;
 }
 
 function endGame(draw) {
@@ -154,53 +220,63 @@ function endGame(draw) {
     drawCounter++;
   } else {
     endgameMsg.textContent = `${currentTurn} wins!`;
-    if (currentTurn === xClass) {
+    if (currentTurn === playerX) {
       xCounter++;
     } else {
       oCounter++;
     }
   }
+  popupEndgame();
+  displayScore();
+}
+
+function popupEndgame() {
   endgameBackground.style.display = "flex";
   boardStatus.style.visibility = "hidden";
   whoseTurnSpan.style.visibility = "hidden";
-  displayScore();
 }
 
 function isDraw() {
   return [...cells].every((cell) => {
-    return cell.textContent === xClass || cell.textContent === oClass;
+    return cell.textContent === playerX || cell.textContent === playerO;
   });
 }
 
-endgameNextGame.addEventListener("click", anotherGame);
+endgameNextGameBtn.addEventListener("click", anotherGame);
 
 function anotherGame() {
   cells.forEach((cell) => {
-    cell.classList.remove(oClass);
-    cell.classList.remove(xClass);
+    cell.classList.remove(playerO);
+    cell.classList.remove(playerX);
     cell.addEventListener("click", makeMove, { once: true });
   });
+  newGamePrep();
   setupBoard();
 }
 
 endgameReplayBtn.addEventListener("click", replayMoves);
-
 function replayMoves() {
+  cells.forEach((cell) => {
+    cell.classList.add("blocked");
+  });
+  replayDisplay();
+  currentBoard = boardHistory.splice(boardHistory.length - 1, 1);
+  console.log("new board " + currentBoard);
+}
+
+function replayDisplay() {
   boardStatus.style.visibility = "visible";
   endgameBackground.style.display = "none";
-  boardStatus.textContent = "Replaying moves";
   historyBtns.style.visibility = "visible";
   nextGameBtn.style.visibility = "visible";
   whoseTurnSpan.style.visibility = "hidden";
-  cells.forEach((cell) => {
-    cell.classList.add("block-cells");
-  });
   boardDisplay.classList.remove("o-turn");
   boardDisplay.classList.remove("x-turn");
+  boardStatus.textContent = "Replaying moves";
+  resetPrevious()
 }
 
 nextGameBtn.addEventListener("click", nextGame);
-
 function nextGame() {
   newGamePrep();
   setupBoard();
@@ -210,23 +286,100 @@ restartBtn.addEventListener("click", restartGame);
 
 function restartGame() {
   newGamePrep();
+  setupBoard();
   boardStatus.textContent = " ";
   askPlayerDiv.style.display = "flex";
   resetCounter();
   displayScore();
+  whoseTurnSpan.style.visibility = "hidden";
 }
 
 function newGamePrep() {
   cells.forEach((cell) => {
-    cell.classList.remove(oClass);
-    cell.classList.remove(xClass);
+    cell.textContent = "";
+    cell.classList.remove(playerO);
+    cell.classList.remove(playerX);
     cell.addEventListener("click", makeMove, { once: true });
-    cell.classList.remove("block-cells");
-    cell.textContent = cell.textcontent.remove;
+    cell.classList.remove("blocked");
   });
   historyBtns.style.visibility = "hidden";
   nextGameBtn.style.visibility = "hidden";
+  board = emptyBoard;
+  boardHistory = boardHistory.splice(0, 1);
+  boardStatus.textContent = " ";
 }
 
+function setupBoard() {
+  boardStatus.style.visibility = "visible";
+  whoseTurnSpan.style.visibility = "visible";
+  boardStatus.textContent = " playing";
+  endgameBackground.style.display = "none";
+  askPlayerDiv.style.display = "none";
+  boardDisplay.classList.remove(`${currentTurn}-turn`);
+}
+
+function resetCounter() {
+  xCounter = 0;
+  oCounter = 0;
+  drawCounter = 0;
+  console.log("counter");
+}
+resetCounter();
+
+function displayScore() {
+  xTotal.innerHTML = xCounter;
+  oTotal.innerHTML = oCounter;
+  drawTotal.innerHTML = drawCounter;
+  console.log("display");
+}
+displayScore();
+
+
+function resetPrevious() {
+  b = 1;
+  backwardBtn.classList.remove("blocked");
+  backwardBtn.style.opacity = "1";
+  backwardBtn.disabled = false;
+}
 // console.log(cells);
 // console.log([...cells]);
+
+// if (board.includes(playerX) || board.includes(playerO)) {
+
+// let k = 0;
+// for (let i = 0; i < board.length; i++) {
+//   for (let j = 0; j < board[i].length; j++) {
+//     board[i][j] = cells[k].textContent;
+//     k++;
+//   }
+// }
+
+// let k = 0;
+// let newBoard = [];
+// for (let i = 0; i < board.length; i++) {
+//   for (let j = 0; j < board[i].length; j++) {
+//     newBoard[i][j] = board[k];
+//     k++;
+//   }
+// }
+
+// for (let i = 0; i < board.length; i++) {
+//   for (let j = 0; j < board[i].length; j++) {
+//     if (board[i][j] === "x") {
+//       board[i][j].classList.add(playerX);
+//     } else if (board[i][j] === "o") {
+//       board[i][j].classList.add(playerO);
+//     } else {
+//       board[i][j].classList.remove(playerX)
+//       board[i][j].classList.remove(playerO)
+//     }
+//   }
+// }
+
+//   board.forEach((cell) => {
+//   if (cell === "x") {
+//     cell.classList.add(playerX);
+//   } else if (cell === "o") {
+//     cell.classList.add(playerO)
+//   }
+// })

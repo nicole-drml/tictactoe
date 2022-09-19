@@ -23,12 +23,6 @@
 }
 
 .x::before,
-.x::after,
-.o::before {
-  background-color: $background-color;
-}
-
-.x::before,
 #board.x-turn .cell:not(.x):not(.o):hover::before {
   transform: rotate(-45deg);
 }
@@ -38,12 +32,33 @@
   transform: rotate(45deg);
 }
 
+.x::before,
+.x::after,
+.o::before {
+  background-color: $background-color;
+}
+
+
 #board.x-turn .cell:not(.x):not(.o):hover::before,
 #board.x-turn .cell:not(.x):not(.o):hover::after,
 #board.o-turn .cell:not(.x):not(.o):hover::before,
 #board.o-turn .cell:not(.x):not(.o):hover::after {
   cursor: pointer;
   background-color: $hover;
+}
+
+
+
+.o::before,
+#board.o-turn .cell:not(.x):not(.o):hover::before {
+  width: $x-o-size * 0.90;
+  height: $x-o-size * 0.90;
+}
+
+.o::after {
+  background-color: $o-color;
+  width: $x-o-size * 0.55;
+  height: $x-o-size * 0.55;
 }
 
 .o::before,
@@ -54,13 +69,6 @@
   position: absolute;
   border-radius: 50%;
 }
-
-.o::before,
-#board.o-turn .cell:not(.x):not(.o):hover::before {
-  width: $x-o-size * 0.90;
-  height: $x-o-size * 0.90;
-}
-
 
 #board.o-turn .cell:not(.x):not(.o):hover::after {
 background-color: $board-color;
@@ -74,12 +82,8 @@ background-color: $board-color;
   height: $x-o-size * 0.90;
 }
 
-.o::after {
-    background-color: $o-color;
-    width: $x-o-size * 0.55;
-    height: $x-o-size * 0.55;
-}
 
-.block-cells {
+.blocked {
   cursor: not-allowed;
+  pointer-events: none;
 }
