@@ -275,7 +275,6 @@ function backward() {
   if (availablePrevious > 0) {
     displayHistoryBoard();
     b++;
-    f--;
   } else {
     disableBtn(backwardBtn);
   }
@@ -286,10 +285,10 @@ forwardBtn.addEventListener("click", forward);
 
 function forward() {
   f = 1;
-  f++;
   board = boardHistory[boardHistory.length - b + f];
   if (b > f) {
     displayHistoryBoard();
+    f++;
     b--;
   } else {
     disableBtn(forwardBtn);
