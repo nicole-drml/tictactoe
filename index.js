@@ -30,10 +30,14 @@ let xCounter = 0;
 let oCounter = 0;
 let drawCounter = 0;
 
+let b = 0;
+let f = 0;
+
 const playerX = "x";
 const playerO = "o";
 let playerOTurn = "";
 let currentTurn = "";
+
 
 let emptyBoard = [
   ["", "", ""],
@@ -65,70 +69,6 @@ const winningCombinations = [
   [0, 4, 8],
   [2, 4, 6],
 ];
-
-backwardBtn.addEventListener("click", backward);
-
-let b = 0;
-let f = 0;
-function backward() {
-  board = boardHistory[boardHistory.length - b];
-  let availablePrevious = boardHistory.length - b;
-
-  if (availablePrevious > 0) {
-    displayHistoryBoard();
-    b++;
-    f--;
-  } else {
-    disableBtn(backwardBtn);
-  }
-  enableBtn(forwardBtn);
-}
-
-forwardBtn.addEventListener("click", forward);
-
-function forward() {
-  f = 1;
-  f++;
-  board = boardHistory[boardHistory.length - b + f];
-  if (b > f) {
-    displayHistoryBoard();
-    b--;
-  } else {
-    disableBtn(forwardBtn);
-  }
-  enableBtn(backwardBtn);
-}
-
-function disableBtn(button) {
-  button.classList.add("blocked");
-  button.style.opacity = ".5";
-  button.disabled = true;
-}
-
-function enableBtn(button) {
-  button.classList.remove("blocked");
-  button.style.opacity = "1";
-  button.disabled = false;
-}
-
-function displayHistoryBoard() {
-  cells.forEach((cell) => {
-    cell.classList.remove(playerO);
-    cell.classList.remove(playerX);
-  });
-  let r = 0;
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
-      cells[r].textContent = board[i][j];
-      if (cells[r].textContent.includes(playerX)) {
-        cells[r].classList.add(playerX);
-      } else if (cells[r].textContent.includes(playerO)) {
-        cells[r].classList.add(playerO);
-      }
-      r++;
-    }
-  }
-}
 
 xStartBtn.addEventListener("click", () => {
   playerOTurn = false;
@@ -260,7 +200,14 @@ function replayDisplay() {
   boardDisplay.classList.remove("o-turn");
   boardDisplay.classList.remove("x-turn");
   boardStatus.textContent = "Replaying moves";
-  resetPrevious();
+  resetPreviousBtn();
+}
+
+function resetPreviousBtn() {
+  b = 1;
+  backwardBtn.classList.remove("blocked");
+  backwardBtn.style.opacity = "1";
+  backwardBtn.disabled = false;
 }
 
 nextGameBtn.addEventListener("click", nextGame);
@@ -320,9 +267,66 @@ function displayScore() {
 }
 displayScore();
 
-function resetPrevious() {
-  b = 1;
-  backwardBtn.classList.remove("blocked");
-  backwardBtn.style.opacity = "1";
-  backwardBtn.disabled = false;
+
+backwardBtn.addEventListener("click", backward);
+
+function backward() {
+  board = boardHistory[boardHistory.length - b];
+  let availablePrevious = boardHistory.length - b;
+
+  if (availablePrevious > 0) {
+    displayHistoryBoard();
+    b++;
+    f--;
+  } else {
+    disableBtn(backwardBtn);
+  }
+  enableBtn(forwardBtn);
+}
+
+
+forwardBtn.addEventListener("click", forward);
+
+function forward() {
+  f = 1;
+  f++;
+  board = boardHistory[boardHistory.length - b + f];
+  if (b > f) {
+    displayHistoryBoard();
+    b--;
+  } else {
+    disableBtn(forwardBtn);
+  }
+  enableBtn(backwardBtn);
+}
+
+function disableBtn(button) {
+  button.classList.add("blocked");
+  button.style.opacity = ".5";
+  button.disabled = true;
+}
+
+function enableBtn(button) {
+  button.classList.remove("blocked");
+  button.style.opacity = "1";
+  button.disabled = false;
+}
+
+function displayHistoryBoard() {
+  cells.forEach((cell) => {
+    cell.classList.remove(playerO);
+    cell.classList.remove(playerX);
+  });
+  let r = 0;
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      cells[r].textContent = board[i][j];
+      if (cells[r].textContent.includes(playerX)) {
+        cells[r].classList.add(playerX);
+      } else if (cells[r].textContent.includes(playerO)) {
+        cells[r].classList.add(playerO);
+      }
+      r++;
+    }
+  }
 }
