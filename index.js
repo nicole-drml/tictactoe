@@ -38,7 +38,6 @@ const playerO = "o";
 let playerOTurn = "";
 let currentTurn = "";
 
-
 let emptyBoard = [
   ["", "", ""],
   ["", "", ""],
@@ -135,6 +134,12 @@ function checkWin(currentTurn) {
   });
 }
 
+function isDraw() {
+  return [...cells].every((cell) => {
+    return cell.textContent === playerX || cell.textContent === playerO;
+  });
+}
+
 function swapTurns(currentTurn) {
   boardDisplay.classList.remove(`${currentTurn}-turn`);
   playerOTurn = !playerOTurn;
@@ -157,12 +162,6 @@ function endGame(draw) {
   }
   popupEndgame();
   displayScore();
-}
-
-function isDraw() {
-  return [...cells].every((cell) => {
-    return cell.textContent === playerX || cell.textContent === playerO;
-  });
 }
 
 function popupEndgame() {
@@ -267,7 +266,6 @@ function displayScore() {
 }
 displayScore();
 
-
 backwardBtn.addEventListener("click", backward);
 
 function backward() {
@@ -283,7 +281,6 @@ function backward() {
   }
   enableBtn(forwardBtn);
 }
-
 
 forwardBtn.addEventListener("click", forward);
 
