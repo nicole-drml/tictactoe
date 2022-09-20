@@ -5,11 +5,11 @@
 }
 
 $board: 500px;
-$board-color:#F88DB0;
-$background-color: #160E37;
+$board-color: #f88db0;
+$background-color: #160e37;
 $x-o-size: 80%;
 $hover: rgb(199, 178, 153);
-$o-color: #4ACFA3;
+$o-color: #4acfa3;
 $x-color: #fab951;
 $button-height: 100%;
 $next-game: #9af583;
@@ -30,7 +30,6 @@ body {
   font-size: 4em;
   margin-bottom: 15px;
 }
-
 
 @import "../partials/startgame";
 @import "../partials/board";

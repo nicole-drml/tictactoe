@@ -10,7 +10,7 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 30px;
-  background-color: #160E37;
+  background-color: #160e37;
   color: white;
   overflow: hidden;
 }
@@ -50,13 +50,13 @@ body {
 }
 #ask-player-container #ask-player-buttons #ask-player-x-button:hover,
 #ask-player-container #ask-player-buttons #ask-player-o-button:hover {
-  color: #160E37;
+  color: #160e37;
 }
 #ask-player-container #ask-player-buttons #ask-player-x-button {
   background-color: #fab951;
 }
 #ask-player-container #ask-player-buttons #ask-player-o-button {
-  background-color: #4ACFA3;
+  background-color: #4acfa3;
 }
 #ask-player-container #ask-player-buttons #ask-player-x-button:disabled,
 #ask-player-container #ask-player-buttons #ask-player-o-button:disabled {
@@ -64,6 +64,7 @@ body {
 }
 
 #board-with-outer-elements {
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -72,7 +73,7 @@ body {
 }
 
 #board {
-  background-color: #F88DB0;
+  background-color: #f88db0;
   display: grid;
   margin-left: auto;
   margin-right: auto;
@@ -137,7 +138,7 @@ body {
 #endgame-container-background #endgame-container #endgame-message {
   text-align: center;
   width: 100%;
-  color: #160E37;
+  color: #160e37;
 }
 #endgame-container-background #endgame-container #endgame-button-container {
   display: flex;
@@ -185,7 +186,7 @@ body {
   display: flex;
   gap: 40px;
   text-align: center;
-  background-color: #F88DB0;
+  background-color: #f88db0;
   width: 500px;
   padding: 5px;
   position: absolute;
@@ -209,7 +210,7 @@ body {
 }
 
 .cell.o {
-  background-color: #4ACFA3;
+  background-color: #4acfa3;
 }
 
 .x::before,
@@ -237,7 +238,7 @@ body {
 .x::before,
 .x::after,
 .o::before {
-  background-color: #160E37;
+  background-color: #160e37;
 }
 
 #board.x-turn .cell:not(.x):not(.o):hover::before,
@@ -255,7 +256,7 @@ body {
 }
 
 .o::after {
-  background-color: #4ACFA3;
+  background-color: #4acfa3;
   width: 44%;
   height: 44%;
 }
@@ -270,7 +271,7 @@ body {
 }
 
 #board.o-turn .cell:not(.x):not(.o):hover::after {
-  background-color: #F88DB0;
+  background-color: #f88db0;
   width: 44%;
   height: 44%;
 }
@@ -305,7 +306,7 @@ body {
 }
 #history-and-next-game-container #history-buttons #previous-button,
 #history-and-next-game-container #history-buttons #next-button {
-  color: #160E37;
+  color: #160e37;
   background-color: #beb9f3;
   transform: scale(1.2);
   text-align: center;
@@ -339,7 +340,7 @@ body {
   background-color: #9af583;
   border-radius: 5px;
   border: hidden #6ad6b2;
-  color: #160E37;
+  color: #160e37;
   visibility: hidden;
 }
 #history-and-next-game-container #next-game:hover {

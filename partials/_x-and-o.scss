@@ -4,10 +4,10 @@
 }
 
 .cell.x {
-    background-color: $x-color;
+  background-color: $x-color;
 }
 .cell.o {
-    background-color: $o-color;
+  background-color: $o-color;
 }
 
 .x::before,
@@ -38,7 +38,6 @@
   background-color: $background-color;
 }
 
-
 #board.x-turn .cell:not(.x):not(.o):hover::before,
 #board.x-turn .cell:not(.x):not(.o):hover::after,
 #board.o-turn .cell:not(.x):not(.o):hover::before,
@@ -47,12 +46,10 @@
   background-color: $hover;
 }
 
-
-
 .o::before,
 #board.o-turn .cell:not(.x):not(.o):hover::before {
-  width: $x-o-size * 0.90;
-  height: $x-o-size * 0.90;
+  width: $x-o-size * 0.9;
+  height: $x-o-size * 0.9;
 }
 
 .o::after {
@@ -71,17 +68,16 @@
 }
 
 #board.o-turn .cell:not(.x):not(.o):hover::after {
-background-color: $board-color;
+  background-color: $board-color;
   width: $x-o-size * 0.55;
   height: $x-o-size * 0.55;
 }
 
 .o-turn::before {
   background-color: none;
-  width: $x-o-size * 0.90;
-  height: $x-o-size * 0.90;
+  width: $x-o-size * 0.9;
+  height: $x-o-size * 0.9;
 }
-
 
 .blocked {
   cursor: not-allowed;

@@ -160,7 +160,7 @@ function makeMove(e) {
     });
   } else {
     currentTurn = playerOTurn ? playerO : playerX;
-    placeMark(cell, currentTurn);
+    updateBoard(cell, currentTurn);
     if (checkWin(currentTurn)) {
       endGame(false);
     } else if (isDraw()) {
@@ -171,7 +171,7 @@ function makeMove(e) {
   }
 }
 
-function placeMark(cell, currentTurn) {
+function updateBoard(cell, currentTurn) {
   cell.textContent = currentTurn;
   let r = 0;
   for (let i = 0; i < board.length; i++) {
@@ -274,10 +274,10 @@ restartBtn.addEventListener("click", restartGame);
 function restartGame() {
   newGamePrep();
   setupBoard();
-  boardStatus.textContent = " ";
-  askPlayerDiv.style.display = "flex";
   resetCounter();
   displayScore();
+  boardStatus.textContent = " ";
+  askPlayerDiv.style.display = "flex";
   whoseTurnSpan.style.visibility = "hidden";
 }
 
