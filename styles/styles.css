@@ -16,29 +16,10 @@ body {
 }
 
 #title {
+  font-size: 4em;
   margin-bottom: 15px;
 }
 
-@media (max-width: 799px) {
-  #board,
-#history-and-next-game-container,
-#scores-tally {
-    width: 80%;
-    max-width: 460px;
-  }
-}
-@media (min-width: 800px) {
-  #title {
-    font-size: 5em;
-    margin-bottom: 15px;
-  }
-  #board,
-#history-and-next-game-container,
-#scores-tally {
-    width: 80%;
-    max-width: 500px;
-  }
-}
 #ask-player-container {
   position: fixed;
   display: flex;
@@ -83,7 +64,6 @@ body {
 }
 
 #board-with-outer-elements {
-  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
@@ -94,6 +74,8 @@ body {
 #board {
   background-color: #F88DB0;
   display: grid;
+  margin-left: auto;
+  margin-right: auto;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   border-radius: 25px;
@@ -308,6 +290,8 @@ body {
   display: grid;
   margin-top: 10px;
   width: 500px;
+  margin-left: auto;
+  margin-right: auto;
   grid-template-columns: repeat(3, 1fr);
 }
 #history-and-next-game-container #history-buttons {
