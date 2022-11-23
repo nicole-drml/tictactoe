@@ -30,8 +30,7 @@ let xCounter = 0;
 let oCounter = 0;
 let drawCounter = 0;
 
-let b = 0;
-let f = 0;
+let moveCount = 1;
 
 const playerX = "x";
 const playerO = "o";
@@ -269,13 +268,9 @@ displayScore();
 backwardBtn.addEventListener("click", backward);
 
 function backward() {
-  board = boardHistory[boardHistory.length - b];
-  let availablePrevious = boardHistory.length - b;
-
-  if (availablePrevious > 0) {
-    displayHistoryBoard();
-    b++;
-  } else {
+  moveCount++;
+  displayHistoryBoard();
+  if (moveCount == boardHistory.length - 1) {
     disableBtn(backwardBtn);
   }
   enableBtn(forwardBtn);
@@ -283,16 +278,14 @@ function backward() {
 
 forwardBtn.addEventListener("click", forward);
 
-function forward() {
-  f = 1;
-  board = boardHistory[boardHistory.length - b + f];
-  if (b > f) {
+function forward() {;
+    moveCount--;
     displayHistoryBoard();
-    f++;
-    b--;
-  } else {
+
+  if (moveCount == 1) {
     disableBtn(forwardBtn);
   }
+  
   enableBtn(backwardBtn);
 }
 
@@ -313,6 +306,7 @@ function displayHistoryBoard() {
     cell.classList.remove(playerO);
     cell.classList.remove(playerX);
   });
+  board = boardHistory[boardHistory.length - moveCount];
   let r = 0;
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
