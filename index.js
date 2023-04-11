@@ -189,6 +189,18 @@ function replayMoves() {
   replayDisplay();
 }
 
+function disableBtn(button) {
+  button.classList.add("blocked");
+  button.style.opacity = ".5";
+  button.disabled = true;
+}
+
+function enableBtn(button) {
+  button.classList.remove("blocked");
+  button.style.opacity = "1";
+  button.disabled = false;
+}
+
 function replayDisplay() {
   boardStatus.style.visibility = "visible";
   endgameBackground.style.display = "none";
@@ -198,14 +210,8 @@ function replayDisplay() {
   boardDisplay.classList.remove("o-turn");
   boardDisplay.classList.remove("x-turn");
   boardStatus.textContent = "Replaying moves";
-  resetPreviousBtn();
-}
-
-function resetPreviousBtn() {
-  b = 1;
-  backwardBtn.classList.remove("blocked");
-  backwardBtn.style.opacity = "1";
-  backwardBtn.disabled = false;
+  disableBtn(forwardBtn);
+  enableBtn(backwardBtn);
 }
 
 nextGameBtn.addEventListener("click", nextGame);
@@ -289,17 +295,6 @@ function forward() {;
   enableBtn(backwardBtn);
 }
 
-function disableBtn(button) {
-  button.classList.add("blocked");
-  button.style.opacity = ".5";
-  button.disabled = true;
-}
-
-function enableBtn(button) {
-  button.classList.remove("blocked");
-  button.style.opacity = "1";
-  button.disabled = false;
-}
 
 function displayHistoryBoard() {
   cells.forEach((cell) => {
