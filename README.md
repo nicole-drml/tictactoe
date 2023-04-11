@@ -1,5 +1,5 @@
 # Tic Tac Toe #
-Built with HTML, SCSS, and JavaScript.
+Built with HTML, CSS/SCSS, and JavaScript.
 </br>
 </br>
 Option to choose who gets the first move!
